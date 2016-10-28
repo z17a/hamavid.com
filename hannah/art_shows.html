@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<head>
+<title>Hannah | Art</title>
+<meta name="keywords" content="Hamavid, Hamavid.com, Hannah Hamavid, art, watercolor"/>
+<link rel="icon" href="./images/favicon-32x32.png">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="css/general_style.css"/>
+<link rel="stylesheet" type="text/css" href="css/slideshow.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+<script type="text/javascript" src="./js/overlay_and_slideshow_fxns.js"></script>
+<script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.sidenav a,.sidenav h4 {font-weight:bold}
+
+</style>
+</head>
+<body class="light-grey content" style="max-width:1600px">
+
+<!-- Sidenav/menu -->
+<nav class="sidenav collapse white animate-left" style="z-index:3;width:180px;" id="mySidenav"><br>
+  <div class="container">
+    <a href="#" onclick="w3_close()" class="hide-large right xxlarge padding" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="images/leaves.jpg" style="width:45%;" class="round"><br><br>
+    <h3 class="padding-0"><b>ART</b></h3>
+  </div>
+  <a href="./main.html" class="padding text-teal">HOME</a>
+  <a href="./art_portfolio.html" class="padding">&#x1f648 ART</a>
+   <a href="./music_main.html" class="padding">&#x1f649 MUSIC</a>
+  <a href="./blog_main.html" class="padding">&#x1f64a BLOG</a>
+  <a href="./main.html#contact" class="padding">CONTACT</a>
+   
+   
+  <div class="section padding-top large">
+    <a href="https://soundcloud.com/hamavid" class="hover-white hover-text-red-orange show-inline-block"><i class="fa fa-soundcloud"></i></a>
+    <!--<a href="#" class="hover-white hover-text-indigo show-inline-block"><i class="fa fa-linkedin"></i></a>-->
+    <a href="https://www.etsy.com/shop/vayavaya" style="font-size:0.8em" class="hover-white hover-text-orange show-inline-block"><i class="fa fa-etsy"></i></a>
+  </div> 
+</nav>
+
+<!-- Overlay effect when opening sidenav on small screens -->
+<div class="overlay hide-large animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="main" style="margin-left:180px">
+
+  <!-- Header -->
+  <header class="container">
+    <a href="#"><img src="images/leaves.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity"></a>
+    <span class="opennav hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars" style="margin-top:9px"></i></span>
+     <!--<div><h1 style="font-size:140px;margin-left:300px"><b>Art</b></h1></div>-->
+      <div><img src="./images/art.png" width="100%" style="margin-top:9px"></div>
+    <div class="center bottombar padding-16">
+      <a href="./art_about.html"><button class="btn white">About</button></a>
+      <a href="./art_portfolio.html"><button class="btn white">Portfolio</button></a>
+      <a href="./art_shows.html"><button class="btn"></i>Shows</button></a>
+      <a href="./art_links.html"><button class="btn white"></i>Links</button></a>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <div class="content container" style="margin-left:2%;margin-right:2%;padding-top:2%" id="shows">
+  <p>Want to decorate your cafe, school, or basement with my art? Please <a href="./main.html#contact" style="font-weight: bold">contact me</a> for details!</p><br>
+  <h3>Future</h3>
+  <p>No upcoming shows.<br><br>
+
+  <h3>Past</h3>
+  <p><ul id="shows_list">
+  <li><span class="text-ligrey">[+]</span> Chocolati <a href="https://www.facebook.com/GreenwoodChocolatiCafe/">Greenwood</a>, Seattle - Feb, 2013</li>
+
+  <li><span class="toggler" onclick="tog_plusminus(1);slidetoggle(1)" style="cursor:pointer">[+]</span> Chocolati <a href="https://www.facebook.com/ChocolatiWallingford/">Wallingford</a>, Seattle - Sep, 2012
+  <span id="1" style="display: none"><div class="details animate-opacity">
+  <img src="images/shows/choco_wally_1.jpg">
+  <img src="images/shows/choco_wally_2.jpg">
+  <img src="images/shows/choco_wally_3.jpg">
+  <img src="images/shows/choco_wally_4.jpg">
+  <img src="images/shows/choco_wally_5.jpg">
+  <img src="images/shows/choco_wally_6.jpg">
+  <img src="images/shows/choco_wally_7.jpg">
+  <div>Solo show, both floors of Chocolati Cafe in Wallingford. Division III China watercolors, "tea-box" drawings along stairwell, some newer acrylics.</div>
+  </div></span></li>
+
+  <li><span class="text-ligrey">[+]</span> Chocolati</a> <a href="https://www.facebook.com/GLChocolatiCafe/">Greenlake</a>, Seattle - Dec, 2011</li>
+
+
+  <li><span class="toggler" onclick="tog_plusminus(2);slidetoggle(2)" style="cursor:pointer">[+]</span> Enfield laundry room mural, Hampshire College - May, 2011
+  <span id="2" style="display:none"><div class="details animate-opacity">
+  <img src="images/shows/enfield_1.jpg">
+  <img src="images/shows/enfield_2.jpg">
+  <img src="images/shows/enfield_3.jpg">
+  <div>Mural collaboration in the laundry room of the Enfield dorms at Hampshire College. With Emily Ryan, Leah Grossman and RJ Sakai among others.</div>
+  </div></span></li>
+
+  <li><span class="text-ligrey">[+]</span> <a href="https://www.hampshire.edu/cla/prescott-tavern">Tavern Art Gallery</a>, Hampshire College - Apr, 2011</li> 
+
+  <li><span class="toggler" onclick="tog_plusminus(3);slidetoggle(3)" style="cursor:pointer">[+]</span> <a href="http://www.blacksheepinn.com/"> Black Sheep Inn</a> murals etc., Chugchilan (Ecuador) - Apr, 2007
+  <span id="3" style="display: none"><div class="details animate-opacity">
+  <img src="images/shows/bsi_1.jpg">
+  <img src="images/shows/bsi_2.jpg">
+  <img src="images/shows/bsi_3.jpg">
+  <img src="images/shows/bsi_4.jpg">
+  <img src="images/shows/bsi_5.jpg">
+  <div>1: Night and day woodshed mural. 2-4: Painted map of BSI land and buildings. 5: Black sheep designs for BSI plateware.</div>
+  </div></span></li>
+
+  <li><span class="text-ligrey">[+]</span> Driscoll Teachers' Room mural, Brookline MA - 2005</li>
+  </ul>
+  </p><br><br><br><br><br>
+  </div>
+</div>
+<!-- End page content -->
+  <!-- Footer -->
+  <footer class="container padding-16 white">
+  <div class="row-padding">
+  <h5 class="center" style="font-size:14px">Hannah Hamavid 2016</h5>
+  </div>
+  </footer>
+</body>
+</html>
+

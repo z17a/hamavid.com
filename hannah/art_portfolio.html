@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<head>
+<title>Hannah | Art</title>
+<meta name="keywords" content="Hamavid, Hamavid.com, Hannah Hamavid, art, watercolor"/>
+<link rel="icon" href="./images/favicon-32x32.png">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" type="text/css" href="css/general_style.css"/>
+<link rel="stylesheet" type="text/css" href="css/slideshow.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
+<script type="text/javascript" src="./js/overlay_and_slideshow_fxns.js"></script>
+<script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.sidenav a,.sidenav h4 {font-weight:bold}
+
+</style>
+</head>
+<body class="light-grey content" style="max-width:1600px">
+
+<!-- Sidenav/menu -->
+<nav class="sidenav collapse white animate-left" style="z-index:3;width:180px;" id="mySidenav"><br>
+  <div class="container">
+    <a href="#" onclick="w3_close()" class="hide-large right xxlarge padding" title="close menu">
+      <i class="fa fa-remove"></i>
+    </a>
+    <img src="images/leaves.jpg" style="width:45%;" class="round"><br><br>
+    <h3 class="padding-0"><b>ART</b></h3>
+  </div>
+  <a href="./main.html" class="padding text-teal">HOME</a>
+  <a href="./art_portfolio.html" class="padding">&#x1f648 ART</a>
+  <a href="./music_main.html" class="padding">&#x1f649 MUSIC</a>
+  <a href="./blog_main.html" class="padding">&#x1f64a BLOG</a>
+  <a href="./main.html#contact" class="padding">CONTACT</a>
+   
+   
+  <div class="section padding-top large">
+    <a href="https://soundcloud.com/hamavid" class="hover-white hover-text-red-orange show-inline-block"><i class="fa fa-soundcloud"></i></a>
+    <!--<a href="#" class="hover-white hover-text-indigo show-inline-block"><i class="fa fa-linkedin"></i></a>-->
+    <a href="https://www.etsy.com/shop/vayavaya" style="font-size:0.8em" class="hover-white hover-text-orange show-inline-block"><i class="fa fa-etsy"></i></a>
+  </div> 
+</nav>
+
+<!-- Overlay effect when opening sidenav on small screens -->
+<div class="overlay hide-large animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="main" style="margin-left:180px">
+
+  <!-- Header -->
+  <header class="container">
+    <a href="#"><img src="images/leaves.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity"></a>
+    <span class="opennav hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars" style="margin-top:9px"></i></span>
+     <!--<div><h1 style="font-size:140px;margin-left:300px"><b>Art</b></h1></div>-->
+      <div><img src="./images/art.png" width="100%" style="margin-top:9px"></div>
+    <div class="center bottombar padding-16">
+      <a href="./art_about.html"><button class="btn white">About</button></a>
+      <a href="./art_portfolio.html"><button class="btn">Portfolio</button></a>
+      <a href="./art_shows.html"><button class="btn white"></i>Shows</button></a>
+      <a href="./art_links.html"><button class="btn white"></i>Links</button></a>
+    </div>
+  </header>
+
+  <!-- Photo Grid -->
+  <div style="padding:6px">
+    <div class="third"> 
+    <span onclick="showDivs(1);openSlides()"><img src="images/portfolio/green_sky.jpg" class="hover-opacity" style="width:100%"></span>
+   	<span onclick="showDivs(2);openSlides()"><img src="images/portfolio/davis_longline.jpg" class="hover-opacity" style="width:100%"></span></div>
+    <div class="third"> 
+    <span onclick="showDivs(3);openSlides()"><img src="images/portfolio/two_lilies.jpg" class="hover-opacity" style="width:100%"></span>
+   	<span onclick="showDivs(4);openSlides()"><img src="images/portfolio/coffee_angels.jpg" class="hover-opacity" style="width:100%"></span></div>
+    <div class="third"> 
+    <span onclick="showDivs(5);openSlides()"><img src="images/portfolio/twisty_tree.jpg" class="hover-opacity" style="width:100%"></span>
+    <span onclick="showDivs(6);openSlides()"><img src="images/portfolio/mermaid.jpg" class="hover-opacity" style="width:100%"></span></div>
+  </div>
+  </div>
+</div>
+ <!-- Clear floats (to keep the pagination out of the grid)-->
+<div class="clear"></div><br><br>
+
+
+<!-- Photos as slideshow overlay -->
+<div id="slideshow" class="overlay animate-left" style="z-index:3">
+  <a href="javascript:void(0)" class="closebtn right jumbo" onclick="closeSlides()">&times;</a>
+  <div class="overlay-content">
+      <a class="leftscroller hide-small" onclick="plusDivs(-1)">&#10094;</a>
+      <a class="rightscroller hide-small" onclick="plusDivs(+1)">&#10095;</a>
+      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/green_sky.jpg"></a><figcaption><i><b>House with green sky:</b></i> Watercolor on paper. Painted at the <a href="https://www.folkschool.org/">John C. Campbell Folk School</a> with Billie Shelburn's plein air watercolor class, July, 2016</figcaption></figure>
+      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/davis_longline.jpg"></a><figcaption><i><b>Ben longlining:</b></i> Acrylic on scrap wood. Davis, CA - June, 2012</figcaption></figure>
+      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/two_lilies.jpg"></a><figcaption><i><b>Two lilies:</b></i> Watercolor on paper. Painted at the <a href="https://www.folkschool.org/">John C. Campbell Folk School</a> with Billie Shelburn's plein air watercolor class, July, 2016</figcaption></figure>
+      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/coffee_angels.jpg"></a><figcaption><i><b>Portrait of Seattle:</b></i> Acrylic on scrap wood, 2012.</figcaption></figure>
+      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/twisty_tree.jpg"></a><figcaption><i><b>Twisty tree:</b></i> Watercolor on paper. Painted at the <a href="https://www.folkschool.org/">John C. Campbell Folk School</a> with Billie Shelburn's plein air watercolor class, July, 2016</figcaption></figure>
+      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/mermaid.jpg"></a><figcaption><i><b>Yes Ma I did the dishes:</b></i> Acrylic on scrap wood, 2012.</figcaption></figure>
+  </div>
+</div>
+
+
+  <!-- Pagination -->
+  <!-- commenting out pagination for now as I don't have that many images
+  <div class="container center padding-32">
+    <ul class="pagination">
+      <li><a class="black" href="#">1</a></li>
+      <li><a class="hover-black" href="#">2</a></li>
+      <li><a class="hover-black" href="#">3</a></li>
+      <li><a class="hover-black" href="#">4</a></li>
+    </ul>
+  </div>
+  -->
+  <!-- Footer -->
+  <footer class="container padding-16 white">
+  <div class="row-padding">
+  <h5 class="center" style="font-size:14px">Hannah Hamavid 2016</h5>
+  </div>
+  </footer>
+
+<!-- End page content -->
+</div>
+</body>
+</html>
+

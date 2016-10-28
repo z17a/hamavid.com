@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<!-- sliding or fading
+<img class="mySlides w3-animate-left" src="img_01.jpg">
+<img class="mySlides w3-animate-fading" src="img_01.jpg">
+-->
+<title>Hannah Hamavid</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/slideshow.css" title="Slideshow stylesheet"/>
+<link rel="stylesheet" type="text/css" href="css/w3schools_css.css" title="Stylesheet"/>
+
+<body>
+<div id="myGrid">
+  <div class="w3-third"> 
+    <span onclick="openNav()"><img src="images/leaves.jpg" style="width:30%" class="w3-hover-opacity w3-padding"></span>
+    <span onclick="openNav()"><img src="images/curious_buddies.jpg" style="width:30%" class="w3-hover-opacity w3-padding"></span>
+    <span onclick="openNav()"><img src="images/mermaid.jpg" style="width:30%" class="w3-hover-opacity w3-padding"></span>
+  </div>
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" style="text-align:right" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+         <a class="leftscroller" onclick="plusDivs(-1)">&#10094;</a>
+         <a class="rightscroller" onclick="plusDivs(+1)">&#10095;</a>
+        <img class="mySlides slide" src="images/leaves.jpg">
+        <img class="mySlides slide" src="images/mermaid.jpg">
+        <img class="mySlides slide" src="images/curious_buddies.jpg">
+        </div>
+    </div>
+
+
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+    showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1} 
+    if (n < 1) {slideIndex = x.length} ;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+    }
+    x[slideIndex-1].style.display = "block"; 
+}
+
+function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+}
+</script>
+     
+</body>
+</html>
+

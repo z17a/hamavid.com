@@ -1,0 +1,124 @@
+.overlay {
+    position:fixed;
+    display:none;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:
+    rgba(0,0,0,0.5);
+    z-index:2;
+}
+/*
+.overlay .closebtn {
+	color:#B0B0B0;
+	text-decoration:none!important;
+}
+.overlay .closebtn:hover {
+	color:#ffffff;
+}
+*/
+.overlay-content {
+    position: relative;
+    height:100%;
+    width: 100%;
+    text-align: center;
+    vertical-align:middle;
+}
+.overlay-content a,.overlay .closebtn {
+    text-decoration: none!important;
+    color: #B0B0B0;
+    display: block;
+    transition: 0.3s;
+}
+.overlay-content a:hover, .overlay-content a:focus,.overlay .closebtn:hover {
+    color: #ffffff;
+}
+
+.overlay-content figcaption {color:white;}
+.overlay-content figcaption a {color:white!important;}
+.overlay-content figcaption a:hover {font-style:italic!important;}
+
+.slide {
+    max-width:90%;
+    max-height:90%;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:5%;
+}
+.leftscroller {
+	position:fixed;
+    cursor:pointer;
+    top: 45%;
+    left: 2%;
+    font-size: 2em;
+}
+.rightscroller {
+	position:fixed;
+    cursor:pointer;
+    top: 45%;
+    right: 2%;
+    font-size: 2em;
+}
+.closebtn {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    font-size: 2em;
+    z-index:3;
+}
+.hover-opacity:hover{
+    opacity:0.60;
+    filter:alpha(opacity=60);
+    -webkit-backface-visibility:hidden;
+}
+
+/* control the size of images compared to the screen,
+and hide them for very small screens (show caption only) */
+
+/* if the screen is skinny, don't show the slide*/
+@media only screen and (max-width: 450px) {
+    .mySlides img {display:none;}
+    .overlay-content figcaption {margin-top:40%;}
+}
+/* if the screen is short, don't show the slide*/
+@media only screen and (max-height: 450px) {
+    .mySlides img {display:none;}
+    .overlay-content figcaption {margin-top:20%;}
+}
+
+/*if the screen is taller, still restrict image height*/
+@media only screen and (min-height: 450px) {
+    .mySlides img {
+        margin-top:3%;
+        max-height:350px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+/* and if it's wider still restrict width */
+@media only screen and (min-width: 625px) {
+    .mySlides {
+        max-width:600px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+
+/* specifications for detail-dropdowns in shows page*/
+.details {
+    padding-top:2%;
+    padding-bottom:2%;
+    padding-left:4%;
+}
+.details img {
+    width:30%;
+}
+@media only screen and (max-width: 470px) {.details img {width:70%;}}
+.details div {
+    font-size:0.8em;
+    font-style:italic;
+}

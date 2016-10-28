@@ -1,0 +1,53 @@
+<!-- test mp3 player https://webdesign.tutsplus.com/tutorials/create-a-customized-html5-audio-player--webdesign-7081-->
+<!DOCTYPE html>
+<head>
+<title>Hannah | Music</title>
+<meta name="keywords" content="Hamavid, Hamavid.com, Hannah Hamavid, music"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- layout etc. -->
+<link rel="stylesheet" type="text/css" href="css/general_style.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"/>
+<!-- audio-player-specific -->
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/audio_player.css">
+    <!--<script src="http://code.jQuery.com/jQuery-latest.js" type="text/javascript"></script>-->
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/audio_player.js"></script>
+    <script type="text/javascript" src="js/html5slider.js"></script>
+<style>
+/*html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.sidenav a,.sidenav h4 {font-weight:bold}*/
+</style>
+</head>
+<body>
+
+<h1>HTML 5 Audio Player</h1>
+ 
+    <div class="container gradient">
+         
+        <img class="cover" src="images/leaves.jpg" alt="">
+ 
+        <div class="player gradient">
+ 
+            <a class="button gradient" id="play" href="" title=""></a>
+            <a class="button gradient" id="mute" href="" title=""></a>
+         
+                <input type="range" id="seek" value="0" max=""/>
+     
+            <a class="button gradient" id="close" href="" title=""></a>
+             
+        </div><!-- / player -->
+         
+    </div><!-- / Container-->
+
+<!--
+<audio controls="controls">
+  <source src="music/light.mp3" type="audio/mp3" />
+Your browser does not support the audio element.
+</audio>
+-->
+
+</body>
+</html>

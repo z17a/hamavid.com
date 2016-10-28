@@ -1,0 +1,55 @@
+/* STYLES!! */
+body{
+	background-color:#f0ffff;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -226px;
+	margin-left: -158px;
+}
+img{
+	border:5px solid black;
+	width:307px;
+	height:442px;
+}
+.ciraviva {
+   opacity: 0;
+   border: none;
+   position: absolute;
+   left: 50%;
+	top: 50%;
+	margin-top: -180px;
+	margin-left: -250px;
+}
+.cirhannah {
+   opacity: 0;
+   border: none;
+   position: absolute;
+   left: 50%;
+	top: 50%;
+	margin-top: -200px;
+	margin-left: -80px;
+}
+.ciraviva:hover {
+   opacity: .3;
+   border: none;
+   position: absolute;
+   left: 50%;
+	top: 50%;
+	margin-top: -180px;
+	margin-left: -250px;
+}
+.cirhannah:hover {
+   opacity: .3;
+   border: none;
+   position: absolute;
+   left: 50%;
+	top: 50%;
+	margin-top: -200px;
+	margin-left: -80px;
+}
+@media only screen and (max-width: 720px) {
+	body{
+		background-color:#000000;
+	}
+}

@@ -1,0 +1,114 @@
+/*
+body {
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay {
+    position:fixed;
+    display:none;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:
+    rgba(0,0,0,0.5);
+    z-index:2;
+}
+
+.overlay-content {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-top:5%;
+}
+
+.overlay-content a {
+    padding: 8px;
+    text-decoration: none!important;
+    font-size: 2em;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.slide {
+    max-width:85%;
+    max-height:85%;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.leftscroller {
+    cursor:pointer;
+    float:left;
+}
+.rightscroller {
+    cursor:pointer;
+    float:right;
+}
+
+.overlay-content a:hover, .overlay-content a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    float:right;
+    font-size: 2em;
+}
+
+.closebtn {
+    z-index:3;
+}
+
+
+.w3-hover-opacity:hover{
+    opacity:0.60;
+    filter:alpha(opacity=60);
+    -webkit-backface-visibility:hidden;
+}
+/*
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+@media (max-width:450px){.w3-hide-small{display:none!important}}
+
+@media only screen and (min-height: 625px) {
+    .slide {
+        max-height:600px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+@media only screen and (min-width: 625px) {
+    .slide {
+        max-width:600px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
