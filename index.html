@@ -4,23 +4,22 @@
 <link rel="stylesheet" type="text/css" href="css/landing_page.css">
 <meta name="keywords" content="Hamavid, Hamavid.com, Aviva Hamavid, Hannah Hamavid, palindrome, sisters"/>
 <meta name="viewport" content="width=device-width" />
-<script type="text/javascript" src="./hannah/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./js/landing_page_hoverclicks.js"></script>
 <title>Hamavid</title>
 </head>
 
 <body>
-<img class="center fit" src="images/aviva_hannah.jpg" >    
 
-<script type="text/javascript" language="JavaScript">
-// set body height = window height
-  function set_body_height() { 
-    $('body').height($(window).height());
-  }
-  $(document).ready(function() {
-    $(window).bind('resize', set_body_height);
-    set_body_height();
-  });
-</script>
+<div class="images">
+	<img class="center fit" id="default" src="images/aviva_hannah.jpg">
+	<img class="center fit" id="hl_hannah" src="images/aviva_hannah_h.jpg">
+	<img class="center fit" id="hl_aviva" src="images/aviva_hannah_a.jpg"> 
+
+	<div id="aviva_area"></div>
+	<div id="hannah_area"></div>
+</div>
 </body>
+
 </html>
 

@@ -78,7 +78,7 @@ function tog_plusminus(x) {
 // Change right arrow icon to down arrow icon
 function tog_icon(div_id) {
     var thisid = $("#"+div_id);
-        $(thisid).toggleClass("fa fa-caret-right fa-lg fa fa-caret-down fa-lg");
+    $(thisid).toggleClass("fa fa-caret-right fa-lg fa fa-caret-down fa-lg");
 }
 
 // toggle sliding a div up and down 
@@ -92,7 +92,7 @@ function slidetoggle(div_id) {
     });
 }    
 
-// GET IMAGE DIMENSIONS!
+// GET IMAGE DIMENSIONS! not currently particularly useful or used
 function imgdim(url) {
     var img = new Image();
     img.onload = function(){
