@@ -8,12 +8,11 @@
 <link rel="stylesheet" type="text/css" href="css/slideshow.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
-<script type="text/javascript" src="./js/overlay_and_slideshow_fxns.js"></script>
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./js/overlay_and_slideshow_fxns.js"></script>
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 .sidenav a,.sidenav h4 {font-weight:bold}
-
 </style>
 </head>
 <body class="light-grey content" style="max-width:1600px">
@@ -80,17 +79,28 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 
 <!-- Photos as slideshow overlay -->
-<div id="slideshow" class="overlay animate-left" style="z-index:3">
-  <a href="javascript:void(0)" class="closebtn right jumbo" onclick="closeSlides()">&times;</a>
+<div id="slideshow" class="overlay animate-left" style="margin-left:180px">
+  <div class="topband" onclick="closeSlides();"></div>
+  <div class="bottomband" onclick="closeSlides();"></div>
   <div class="overlay-content">
-      <a class="leftscroller hide-small" onclick="plusDivs(-1)">&#10094;</a>
-      <a class="rightscroller hide-small" onclick="plusDivs(+1)">&#10095;</a>
-      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/green_sky.jpg"></a><figcaption><i><b>House with green sky:</b></i> Watercolor on paper. Painted at the <a href="https://www.folkschool.org/">John C. Campbell Folk School</a> with Billie Shelburn's plein air watercolor class, July, 2016</figcaption></figure>
-      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/davis_longline.jpg"></a><figcaption><i><b>Ben longlining:</b></i> Acrylic on scrap wood. Davis, CA - June, 2012</figcaption></figure>
-      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/two_lilies.jpg"></a><figcaption><i><b>Two lilies:</b></i> Watercolor on paper. Painted at the <a href="https://www.folkschool.org/">John C. Campbell Folk School</a> with Billie Shelburn's plein air watercolor class, July, 2016</figcaption></figure>
-      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/coffee_angels.jpg"></a><figcaption><i><b>Portrait of Seattle:</b></i> Acrylic on scrap wood, 2012.</figcaption></figure>
-      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/twisty_tree.jpg"></a><figcaption><i><b>Twisty tree:</b></i> Watercolor on paper. Painted at the <a href="https://www.folkschool.org/">John C. Campbell Folk School</a> with Billie Shelburn's plein air watercolor class, July, 2016</figcaption></figure>
-      <a onclick="plusDivs(+1)"><figure class="mySlides"><img class="slide" src="images/portfolio/mermaid.jpg"></a><figcaption><i><b>Yes Ma I did the dishes:</b></i> Acrylic on scrap wood, 2012.</figcaption></figure>
+      <a href="javascript:void(0)" class="closebtn animate-left" onclick="closeSlides()">&times;</a>
+      <a class="leftscroller hide-small" onclick="plusDivs(-1)"><i class="fa fa-angle-left fa-2x"></i></a>
+      <a class="rightscroller hide-small" onclick="plusDivs(+1)"><i class="fa fa-angle-right fa-2x"></i></a>
+
+      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/green_sky.jpg"></a><figcaption onclick="slidetoggle(2);tog_closeopen_icon(1);"><span class="updown"><i id="1" class="fa fa-angle-double-down fa-lg"></i></span><span id="2" class="figtext"><i><b>House with green sky:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class, July, 2016</span></figcaption></figure>
+
+      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/davis_longline.jpg"></a><figcaption onclick="slidetoggle(4);tog_closeopen_icon(3);"><span class="updown"><i id="3" class="fa fa-angle-double-down fa-lg"></i></span><span id="4" class="figtext"><i><b>Ben longlining:</b></i> Acrylic on scrap wood. Davis, CA - June, 2012</span></figcaption></figure>
+
+      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/two_lilies.jpg"></a><figcaption onclick="slidetoggle(6);tog_closeopen_icon(5);"><span class="updown"><i id="5" class="fa fa-angle-double-down fa-lg"></i></span><span id="6" class="figtext"><i><b>Two lilies:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class, July, 2016</span></figcaption></figure>
+
+      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/coffee_angels.jpg"></a><figcaption onclick="slidetoggle(8);tog_closeopen_icon(7);"><span class="updown"><i id="7" class="fa fa-angle-double-down fa-lg"></i></span><span id="8" class="figtext"><i><b>Portrait of Seattle:</b></i> Acrylic on scrap wood, 2012.</span></figcaption></figure>
+
+      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/twisty_tree.jpg"></a><figcaption onclick="slidetoggle(10);tog_closeopen_icon(9);"><span class="updown"><i id="9" class="fa fa-angle-double-down fa-lg"></i></span><span id="10" class="figtext"><i><b>Twisty tree:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class, July, 2016</span></figcaption></figure>
+
+      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/mermaid.jpg"></a><figcaption onclick="slidetoggle(12);tog_closeopen_icon(11);"><span class="updown"><i id="11" class="fa fa-angle-double-down fa-lg"></i></span><span id="12" class="figtext"><i><b>Yes Ma I did the dishes:</b></i> Acrylic on scrap wood, 2012.</span></figcaption></figure>
+
+      <div id="leftside" onclick="plusDivs(-1);"></div>
+      <div id="rightside" onclick="plusDivs(+1);"></div>
   </div>
 </div>
 

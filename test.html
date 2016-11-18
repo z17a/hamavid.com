@@ -1,0 +1,25 @@
+<html>
+<script src="js/processing-1.4.8.min.js"></script>
+<body>
+<canvas id="mycanvas" width="400px" height="500px" style="border:1px solid red;""></canvas>
+<script>
+var canvas = document.getElementById('mycanvas');
+var ctx = canvas.getContext('2d');
+ellipse(ctx, 100, 250, 100, 250);
+  /*ctx, right side of oval, vertical center of oval, width of oval, height of oval */
+	function ellipse(context, cx, cy, rx, ry){
+        context.save(); // save state
+        context.beginPath();
+
+        context.translate(cx-rx, cy-ry);
+        context.scale(rx, ry);
+        context.arc(1, 1, 1, 0, 2 * Math.PI, false);
+
+        context.restore(); // restore to original state
+        context.stroke();
+	}
+</script>
+
+</body>
+</html>
+<!---->

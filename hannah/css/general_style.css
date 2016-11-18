@@ -58,6 +58,7 @@ textarea{overflow:auto}
 @media screen and (max-width:992px) {
 	.sidenav.collapse {display:none}
 	.main {margin-left:0!important;margin-right:0!important}
+	.overlay {margin-left:0!important;margin-right:0!important}
 }	
 /* show the sidenav on big screens without having to expand it*/
 @media screen and (min-width:993px){
