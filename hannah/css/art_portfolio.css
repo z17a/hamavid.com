@@ -1,0 +1,132 @@
+/* ------------ GRID ------------  */
+/* images */
+div.third>img {width:100%;}
+div.third>img:hover{opacity:0.60;filter:alpha(opacity=60);-webkit-backface-visibility:hidden}
+
+/* back-to-top button */
+.backtotop {
+    display:none;
+    cursor:pointer;
+    position:fixed;
+    bottom:0;
+    z-index:2;
+}
+@media screen and (min-width: 993px){.backtotop{margin-left:180px;}}
+.backtotop a,.backtotop a:visited,.backtotop a:hover {
+    text-decoration:none!important;
+    color:white;
+    cursor:pointer;
+}
+
+
+/* ------------ SLIDESHOW ------------  */
+/* main overlay */
+.overlay {
+    position:fixed;
+    display:none;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:
+    rgba(0,0,0,0.5);
+}
+.overlay-content {
+    position: absolute;
+    height:80%;
+    width: 100%;
+    top:10%;
+    bottom:10%;
+    background-color:rgba(0,0,0,0.8);
+}
+
+/* areas and links on overlay */
+#leftside {position:absolute;}
+#rightside {position:absolute;}
+.topband,.bottomband{
+    position:absolute;
+    width:100%;
+    height:10%;
+}
+.topband {top:0;} .bottomband{bottom:0;}
+.leftscroller {
+    position:fixed;
+    cursor:pointer;
+    top: 45%;
+    left: 2%;
+    font-size: 2em;
+    opacity:0.3;
+}
+.rightscroller {
+    position:fixed;
+    cursor:pointer;
+    top: 45%;
+    right: 2%;
+    font-size: 2em;
+    opacity:0.3;
+}
+.rightscroller:hover,.leftscroller:hover{opacity:1!important;}
+@media only screen and (min-width: 993px) {.leftscroller{margin-left:180px;}}
+.closebtn {
+    color:#B0B0B0;
+    text-decoration:none!important;
+    position: fixed;
+    top: 11%;
+    right: 1%;
+    font-size: 2em;
+    z-index:3;
+}
+.closebtn:hover {color:#ffffff;}
+@media screen and (max-width: 450px), screen and (max-height: 450px) {
+    .overlay-content{height:100%;top:0;}
+    .closebtn {font-size:4em;top:-3%;}
+    .topband{height:0%;}.bottomband{height:0%;}
+}
+.overlay-content a, .closebtn {
+    text-decoration: none!important;
+    color: #B0B0B0;
+    display: block;
+    transition: 0.3s;
+    z-index:3;
+}
+.overlay-content a:hover, .overlay-content a:focus {color: #ffffff;}
+.hover-opacity:hover{
+    opacity:0.60;
+    filter:alpha(opacity=60);
+    -webkit-backface-visibility:hidden;
+}
+
+/* figure and caption appearance */
+figure {
+    position:relative; /* needs to be relative for figtext toggle to work? */
+    float:left;
+}
+figure>img {
+    max-width:100%;
+    position:relative;
+    top:0!important;
+}
+figcaption {
+    display:block;
+    color:white;
+    position: absolute;
+    float:left;
+    bottom:0;
+    background-color:
+    rgba(0,0,0,0.5);
+    padding:4px;
+    padding-bottom:8px;
+    opacity:1;
+    z-index:4;
+}
+figcaption>span {margin-left:1.1em;float:right;} 
+figcaption {cursor:pointer;}
+@media only screen and (max-width: 450px) {figcaption{max-height:100%;}}
+@media only screen and (max-height: 450px) {figcaption{max-width:100%;}}
+
+
+
+
+

@@ -4,24 +4,33 @@
 <meta name="keywords" content="Hamavid, Hamavid.com, Hannah Hamavid, art, watercolor"/>
 <link rel="icon" href="./images/favicon-32x32.png">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- STYLES -->
 <link rel="stylesheet" type="text/css" href="css/general_style.css"/>
-<link rel="stylesheet" type="text/css" href="css/slideshow.css"/>
+<link rel="stylesheet" type="text/css" href="css/art_portfolio.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
-<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
-<script type="text/javascript" src="./js/overlay_and_slideshow_fxns.js"></script>
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 .sidenav a,.sidenav h4 {font-weight:bold}
 </style>
+<!-- SCRIPTS -->
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./js/general_fxns.js"></script>
+<script type="text/javascript" src="./js/art_portfolio.js"></script>
 </head>
+
+<!--////////////////////////////////////////////////////////////////// -->
+
 <body class="light-grey content" style="max-width:1600px">
+
+<!-- shortcut button back to top -->
+<span class="backtotop btn black"><a href="#"><i class="fa fa-angle-double-up"></i> Back to top</a></span>
 
 <!-- Sidenav/menu -->
 <nav class="sidenav collapse white animate-left" style="z-index:3;width:180px;" id="mySidenav"><br>
   <div class="container">
-    <a href="#" onclick="w3_close()" class="hide-large right xxlarge padding" title="close menu">
-      <i class="fa fa-remove"></i>
+    <a href="#" onclick="close_sidenav()" class="hide-large right xxlarge padding" title="close menu">
+      <i class="fa fa-times"></i>
     </a>
     <img src="images/leaves.jpg" style="width:45%;" class="round"><br><br>
     <h3 class="padding-0"><b>ART</b></h3>
@@ -38,18 +47,19 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <!--<a href="#" class="hover-white hover-text-indigo show-inline-block"><i class="fa fa-linkedin"></i></a>-->
     <a href="https://www.etsy.com/shop/vayavaya" style="font-size:0.8em" class="hover-white hover-text-orange show-inline-block"><i class="fa fa-etsy"></i></a>
   </div> 
+
 </nav>
 
 <!-- Overlay effect when opening sidenav on small screens -->
-<div class="overlay hide-large animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
+<div class="overlay hide-large animate-opacity" onclick="close_sidenav()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="main" style="margin-left:180px">
 
   <!-- Header -->
   <header class="container">
-    <a href="#"><img src="images/leaves.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity"></a>
-    <span class="opennav hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars" style="margin-top:9px"></i></span>
+    <img src="images/leaves.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity">
+    <span class="opennav hide-large xxlarge hover-text-grey" onclick="open_sidenav()"><i class="fa fa-bars" style="margin-top:9px"></i></span>
      <!--<div><h1 style="font-size:140px;margin-left:300px"><b>Art</b></h1></div>-->
       <div><img src="./images/art.png" width="100%" style="margin-top:9px"></div>
     <div class="center bottombar padding-16">
@@ -61,46 +71,66 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </header>
 
   <!-- Photo Grid -->
-  <div style="padding:6px">
+  <div id="grid" style="padding:6px">
     <div class="third"> 
-    <span onclick="showDivs(1);openSlides()"><img src="images/portfolio/green_sky.jpg" class="hover-opacity" style="width:100%"></span>
-   	<span onclick="showDivs(2);openSlides()"><img src="images/portfolio/davis_longline.jpg" class="hover-opacity" style="width:100%"></span></div>
+    <img onclick="showDivs(1);" src="images/portfolio/green_sky.jpg">
+   	<img onclick="showDivs(2);" src="images/portfolio/davis_longline.jpg">
+    <img onclick="showDivs(3);" src="images/portfolio/aubrey.jpg">
+    <img onclick="showDivs(4);" src="images/portfolio/pokemongo.jpg">
+    </div>
+
     <div class="third"> 
-    <span onclick="showDivs(3);openSlides()"><img src="images/portfolio/two_lilies.jpg" class="hover-opacity" style="width:100%"></span>
-   	<span onclick="showDivs(4);openSlides()"><img src="images/portfolio/coffee_angels.jpg" class="hover-opacity" style="width:100%"></span></div>
+    <img onclick="showDivs(5);" src="images/portfolio/two_lilies.jpg">
+   	<img onclick="showDivs(6);" src="images/portfolio/coffee_angels.jpg">
+    <img onclick="showDivs(7);" src="images/portfolio/pogo_bliss.jpg">
+    <img onclick="showDivs(8);" src="images/portfolio/eyeonthepry.jpg">
+    </div>
+
     <div class="third"> 
-    <span onclick="showDivs(5);openSlides()"><img src="images/portfolio/twisty_tree.jpg" class="hover-opacity" style="width:100%"></span>
-    <span onclick="showDivs(6);openSlides()"><img src="images/portfolio/mermaid.jpg" class="hover-opacity" style="width:100%"></span></div>
+    <img onclick="showDivs(9);" src="images/portfolio/twisty_tree.jpg">
+    <img onclick="showDivs(10);" src="images/portfolio/mermaid.jpg">
+    <img onclick="showDivs(11);" src="images/portfolio/swirlies.jpg">
+    </div>
   </div>
   </div>
 </div>
- <!-- Clear floats (to keep the pagination out of the grid)-->
+<!-- Clear floats (to keep the pagination out of the grid)-->
 <div class="clear"></div><br><br>
 
 
 <!-- Photos as slideshow overlay -->
 <div id="slideshow" class="overlay animate-left" style="margin-left:180px">
-  <div class="topband" onclick="closeSlides();"></div>
-  <div class="bottomband" onclick="closeSlides();"></div>
+  <div class="topband"></div>
+  <div class="bottomband"></div>
   <div class="overlay-content">
-      <a href="javascript:void(0)" class="closebtn animate-left" onclick="closeSlides()">&times;</a>
-      <a class="leftscroller hide-small" onclick="plusDivs(-1)"><i class="fa fa-angle-left fa-2x"></i></a>
-      <a class="rightscroller hide-small" onclick="plusDivs(+1)"><i class="fa fa-angle-right fa-2x"></i></a>
+    <a href="javascript:void(0)" class="closebtn animate-left">&times;</a>
+    <a class="leftscroller hide-small"><i class="fa fa-angle-left fa-2x"></i></a>
+    <a class="rightscroller hide-small"><i class="fa fa-angle-right fa-2x"></i></a>
 
-      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/green_sky.jpg"></a><figcaption onclick="slidetoggle(2);tog_closeopen_icon(1);"><span class="updown"><i id="1" class="fa fa-angle-double-down fa-lg"></i></span><span id="2" class="figtext"><i><b>House with green sky:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class, July, 2016</span></figcaption></figure>
+    <figure><img src="images/portfolio/green_sky.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>House with green sky:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class - Jul, 2016</span></figcaption></figure>
 
-      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/davis_longline.jpg"></a><figcaption onclick="slidetoggle(4);tog_closeopen_icon(3);"><span class="updown"><i id="3" class="fa fa-angle-double-down fa-lg"></i></span><span id="4" class="figtext"><i><b>Ben longlining:</b></i> Acrylic on scrap wood. Davis, CA - June, 2012</span></figcaption></figure>
+    <figure><img src="images/portfolio/davis_longline.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Ben longlining:</b></i> Acrylic on scrap wood. Davis, CA - Jun, 2012</span></figcaption></figure>
 
-      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/two_lilies.jpg"></a><figcaption onclick="slidetoggle(6);tog_closeopen_icon(5);"><span class="updown"><i id="5" class="fa fa-angle-double-down fa-lg"></i></span><span id="6" class="figtext"><i><b>Two lilies:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class, July, 2016</span></figcaption></figure>
+    <figure><img src="images/portfolio/aubrey.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span id="6"><i><b>Aubrey at the expo:</b></i> Watercolor on paper. Shanghai, China - 2011. Div 3 portrait series 1 of 5.</span></figcaption></figure>
 
-      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/coffee_angels.jpg"></a><figcaption onclick="slidetoggle(8);tog_closeopen_icon(7);"><span class="updown"><i id="7" class="fa fa-angle-double-down fa-lg"></i></span><span id="8" class="figtext"><i><b>Portrait of Seattle:</b></i> Acrylic on scrap wood, 2012.</span></figcaption></figure>
+    <figure><img src="images/portfolio/pokemongo.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Po-kemon-go:</b></i> Watercolor and pencil on paper - Nov, 2016</span></figcaption></figure>
 
-      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/twisty_tree.jpg"></a><figcaption onclick="slidetoggle(10);tog_closeopen_icon(9);"><span class="updown"><i id="9" class="fa fa-angle-double-down fa-lg"></i></span><span id="10" class="figtext"><i><b>Twisty tree:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class, July, 2016</span></figcaption></figure>
+    <figure><img src="images/portfolio/two_lilies.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Two lilies:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class - Jul, 2016</span></figcaption></figure>
 
-      <figure class="mySlides"><a onclick="plusDivs(+1)"><img class="slide" src="images/portfolio/mermaid.jpg"></a><figcaption onclick="slidetoggle(12);tog_closeopen_icon(11);"><span class="updown"><i id="11" class="fa fa-angle-double-down fa-lg"></i></span><span id="12" class="figtext"><i><b>Yes Ma I did the dishes:</b></i> Acrylic on scrap wood, 2012.</span></figcaption></figure>
+    <figure><img src="images/portfolio/coffee_angels.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Portrait of Seattle:</b></i> Acrylic on scrap wood - 2012.</span></figcaption></figure>
 
-      <div id="leftside" onclick="plusDivs(-1);"></div>
-      <div id="rightside" onclick="plusDivs(+1);"></div>
+    <figure><img src="images/portfolio/pogo_bliss.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Pogo blissed-out:</b></i> Watercolor on paper - Nov, 2016</span></figcaption></figure>
+
+    <figure><img src="images/portfolio/eyeonthepry.jpg"><figcaption><i  class="fa fa-angle-double-down fa-lg"></i><span><i><b>Eyes on the prize:</b></i> Watercolor on paper - Apr, 2011</span></figcaption></figure>
+
+    <figure><img src="images/portfolio/twisty_tree.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Twisty tree:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class - Jul, 2016</span></figcaption></figure>
+
+    <figure><img src="images/portfolio/mermaid.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Yes Ma I did the dishes:</b></i> Acrylic on scrap wood - 2012.</span></figcaption></figure>
+
+    <figure><img src="images/portfolio/swirlies.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Tornado dreams:</b></i> Watercolor on paper - 2013.</span></figcaption></figure>
+
+    <div id="leftside"></div>
+    <div id="rightside"></div>
   </div>
 </div>
 
