@@ -11,8 +11,10 @@ $(document).ready(function(){
     }
   }
 
-// Open and close slideshow when various elements are clicked
+// Open and close slideshow at the correct image when various elements are clicked
   $('#grid img').click(function() {
+    var index = $( "#grid img" ).index( this );
+    showDivs(index+1);
     document.getElementById("slideshow").style.display = "block";
   });
   $('.topband, .bottomband, .closebtn').click(function() {
@@ -21,8 +23,7 @@ $(document).ready(function(){
 
 // set height of image(s) in slides based on window size
   function set_slide_height() { 
-    $window = $(window);
-    height = $window.height();
+    height = $(window).height();
     var windowwidth=window.innerWidth || 
     document.documentElement.clientWidth || 
     document.body.clientWidth;
@@ -35,12 +36,11 @@ $(document).ready(function(){
 
 // extract window dimensions and infer left and right areas for clicking back and forward
   function reset_areas() {
-    $window = $(window);
     var windowwidth=window.innerWidth || 
     document.documentElement.clientWidth || 
     document.body.clientWidth;
     tenpct = windowwidth/10;
-    height = $window.height();
+    height = $(window).height();
     $('#leftside').css('margin-right',tenpct*8);
     $('#rightside').css('margin-left',tenpct*2);
     $('#leftside').css('width',tenpct*2);
@@ -102,11 +102,9 @@ $(document).ready(function(){
     reset_margins(margin_top,margin_side);
 
   // find out how big image is and how big leftover screen is
-    $window = $(window);
     var windowwidth=window.innerWidth || 
     document.documentElement.clientWidth || 
     document.body.clientWidth;
-    /*windowwidth = $window.width();*/
     if (windowwidth > 992) {overlaywidth = windowwidth - 180} // adjust for sidebar
     else {overlaywidth = windowwidth}
     imgwidth = x[slideIndex-1].clientWidth
@@ -117,7 +115,7 @@ $(document).ready(function(){
       }, 100);
     }
     margin_side = (overlaywidth - imgwidth)/2;
-    windowheight = $window.height();
+    windowheight = $(window).height();
     if (windowheight <= 450 || windowwidth <= 450){var multiplier = 1}else{var multiplier = 0.8}
     overlayheight = multiplier*windowheight
     imgheight = x[slideIndex-1].clientHeight;
