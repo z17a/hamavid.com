@@ -1,104 +1,52 @@
 <!DOCTYPE html>
-<html>
+<head>
 <title>Hannah Hamavid</title>
 <meta name="keywords" content="Hamavid, Hamavid.com, Hannah Hamavid, art, watercolor"/>
 <link rel="icon" href="./images/favicon-32x32.png">
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- STYLES -->
 <link rel="stylesheet" type="text/css" href="css/general_style.css"/>
-<link rel="stylesheet" type="text/css" href="css/slideshow.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato"/>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
-<script type="text/javascript" src="./js/overlay_and_slideshow_fxns.js"></script>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<!-- SCRIPTS -->
 <script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./js/general_fxns.js"></script>
+</head>
 
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
-body, html {
-    height: 100%;
-    color: #777;
-    line-height: 1.8;
-}
+<!--////////////////////////////////////////////////////////////////// -->
 
-/* Create a Parallax Effect */
-.bgimg-1, .bgimg-2, .bgimg-3 {
-    opacity: 0.7;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/* First image (Logo. Full height) */
-.bgimg-1 {
-    background-image: url('images/sunset20160910.jpg');
-    min-height: 100%;
-}
-
-/* Second image (Portfolio) */
-.bgimg-2 {
-    /*background-image: url("images/enchantments20160905.jpg");*/
-    background-image: url("images/froggtoggs20160905.jpg");
-    min-height: 400px;
-}
-
-/* Third image (Contact) */
-.bgimg-3 {
-    background-image: url("images/discoveryben20161023.jpg");
-    min-height: 400px;
-}
-
-.wide {letter-spacing: 10px;}
-.hover-opacity {cursor: pointer;}
-
-#googleMap {
-    width: 100%;
-    height: 400px;
-    -webkit-filter: grayscale(90%);
-    filter: grayscale(90%);
-}
-
-/* Turn off parallax scrolling for tablets and mobiles */
-/*@media only screen and (max-width: 1024px) {*/
-@media only screen and (max-width: 993px) {
-
-    .bgimg-1, .bgimg-2, .bgimg-3 {
-        background-attachment: scroll;
-    }
-}
-</style>
 <body>
-
 <!-- Navbar (sit on top, for large screens) -->
 <div class="top hide-small">
   <ul class="navbar" id="largenav">
     <li><a href="./main.html" class="padding-large">HOME</a></li>
-    <li><a href="./art_portfolio.html" class="padding-large">ART</a></li>
+    <li><a href="./art/portfolio/" class="padding-large">ART</a></li>
     <li><a href="./music_main.html" class="padding-large">MUSIC</a></li>
     <li><a href="./blog_main.html" class="padding-large">BLOG</a></li>
   </ul>
 </div>
 
-
 <!-- Navbar (slide in from bars, for small screens) -->
-<nav class="hide-ifnot-small sidenav collapse white animate-left" style="z-index:3;width:180px;" id="mySidenav"><br>
+<nav class="hide-ifnot-small sidenav collapse white animate-left" style="z-index:3;width:180px;" id="sidenav"><br>
   <div class="container">
-    <a href="javascript:void(0)" onclick="w3_close()" class="right xxlarge padding" title="close menu">
+    <a href="javascript:void(0)" onclick="close_sidenav()" class="right xxlarge padding" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
   </div>
     <a href="./main.html" class="padding">HOME</a>
-    <a href="./art_portfolio.html" class="padding">ART</a>
+    <a href="./art/portfolio" class="padding">ART</a>
     <a href="./music_main.html" class="padding">MUSIC</a>
     <a href="./blog_main.html" class="padding">BLOG</a>
 </nav>
 
 <!-- Darkened overlay effect on remaining visible window when opening sidenav on small screens, which can be clicked on to close the sidenav -->
-<div class="overlay hide-ifnot-small animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
+<div class="overlay hide-ifnot-small animate-opacity" onclick="close_sidenav()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
 
 <!-- bars to click on to show nav on small screens, and scroll-down parenthetical -->
 <span class="right padding">(Scroll down!)</span>
 <div class="padding top xxlarge hide-ifnot-small">
-<span class="navbar" style="letter-spacing:8px;padding-left:8px;" id="smallnav" onclick="w3_open()"><i class="fa fa-bars" style="cursor:pointer;"></i></span></div>
+<span class="navbar" style="letter-spacing:8px;padding-left:8px;" id="smallnav" onclick="open_sidenav()"><i class="fa fa-bars" style="cursor:pointer;"></i></span></div>
 
 <!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 opacity display-container">
@@ -167,33 +115,6 @@ body, html {
   <h5 class="center" style="font-size:0.9em;font-weight:200;">Hannah Hamavid 2016</h5>
 </footer>
  
-
-<!-- Add Google Maps -->
-<!--
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script>
-var myCenter = new google.maps.LatLng(47.608013, -122.335167);
-
-function initialize() {
-var mapProp = {
-  center: myCenter,
-  zoom: 12,
-  scrollwheel: false,
-  draggable: false,
-  mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
-
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-var marker = new google.maps.Marker({
-  position: myCenter,
-});
-
-marker.setMap(map);
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
--->
 <script>
 // Change style of navbar on scroll (for large screens)
 window.onscroll = function() {myFunction()};
@@ -208,18 +129,6 @@ function myFunction() {
         smallnavbar.className = smallnavbar.className.replace(" card-2 animate-top white", "");
     }
 }
-
-/*
-// Make navbar hidden/expandable-drop-down for small screens
-window.onscroll = function() {myFunction()};
-function myFunction() {
-    var navbar = document.getElementById("largenav");
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        navbar.className = "navbar" + " card-2" + " animate-top" + " white";
-    } else {
-        navbar.className = navbar.className.replace(" card-2 animate-top white", "");
-    }
-}*/
 
 </script>
 

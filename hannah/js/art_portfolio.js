@@ -65,8 +65,11 @@ $(document).ready(function(){
 
 // Make the figcaption dis/appear on click and toggle the up/down arrow accordingly
   $('figcaption').click(function() {
-    $(this).find('i:first').toggleClass("fa-angle-double-down fa-angle-double-up");
-    $(this).find('span:first').slideToggle();
+/* hides all captions unless lines 69 & 72 are commented out, then hides only clicked-on caption */
+    $( "figure" ).each(function() {
+      $(this).find('i:first').toggleClass("fa-angle-double-down fa-angle-double-up");
+      $(this).find('span:first').slideToggle();
+    });
   });
 });
 

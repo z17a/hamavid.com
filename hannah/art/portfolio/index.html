@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<head>
+<title>Portfolio - ART | Hannah Hamavid</title>
+<meta name="keywords" content="Hamavid, Hamavid.com, Hannah Hamavid, art, watercolor"/>
+<link rel="icon" href="../../images/favicon-32x32.png">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- STYLES -->
+<link rel="stylesheet" type="text/css" href="../../css/general_style.css"/>
+<link rel="stylesheet" type="text/css" href="../../css/art_portfolio.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+<link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css"/>
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.sidenav a,.sidenav h4 {font-weight:bold}
+</style>
+<!-- SCRIPTS -->
+<script type="text/javascript" src="../../../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/general_fxns.js"></script>
+<script type="text/javascript" src="../../js/art_portfolio.js"></script>
+</head>
+
+<!--////////////////////////////////////////////////////////////////// -->
+
+<body class="light-grey content" style="max-width:1600px">
+
+<!-- shortcut button back to top -->
+<span class="backtotop btn black"><a href="#"><i class="fa fa-angle-double-up"></i> Back to top</a></span>
+
+<!-- Sidenav/menu -->
+<nav class="sidenav collapse white animate-left" style="z-index:3;width:180px;" id="sidenav"><br>
+  <div class="container">
+    <a href="#" onclick="close_sidenav()" class="hide-large right xxlarge padding" title="close menu">
+      <i class="fa fa-times"></i>
+    </a>
+    <h1 class="padding-0"><b>ART</b></h1>
+  </div>
+  <a href="../../main.html" class="padding text-teal">HOME</a>
+  <a href="../portfolio" class="padding">&#x1f648 ART</a>
+  <a href="../../music_main.html" class="padding">&#x1f649 MUSIC</a>
+  <a href="../../blog_main.html" class="padding">&#x1f64a BLOG</a>
+  <a href="../../main.html#contact" class="padding">CONTACT</a>
+   
+   
+  <div class="section padding-top large">
+    <a href="https://soundcloud.com/hamavid" class="hover-white hover-text-red-orange show-inline-block"><i class="fa fa-soundcloud"></i></a>
+    <!--<a href="#" class="hover-white hover-text-indigo show-inline-block"><i class="fa fa-linkedin"></i></a>-->
+    <a href="https://www.etsy.com/shop/vayavaya" style="font-size:0.8em" class="hover-white hover-text-orange show-inline-block"><i class="fa fa-etsy"></i></a>
+  </div> 
+
+</nav>
+
+<!-- Overlay effect when opening sidenav on small screens -->
+<div class="overlay hide-large animate-opacity" onclick="close_sidenav()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="main" style="margin-left:180px">
+
+  <!-- Header -->
+  <header class="container">
+    <span class="opennav hide-large xxlarge hover-text-grey" onclick="open_sidenav()"><i class="fa fa-bars" style="margin-top:9px"></i></span>
+    <div><img src="../../images/art.png" width="100%" style="margin-top:9px"></div>
+    <div class="center bottombar padding-16">
+      <a href="../about"><button class="btn white">About</button></a>
+      <a href="../portfolio"><button class="btn">Portfolio</button></a>
+      <a href="../shows"><button class="btn white"></i>Shows</button></a>
+      <a href="../links"><button class="btn white"></i>Links</button></a>
+    </div>
+  </header>
+
+  <!-- Photo Grid -->
+  <div id="grid" style="padding:6px">
+    <div class="third"> 
+    <img src="../../images/portfolio/green_sky.jpg">
+   	<img src="../../images/portfolio/davis_longline.jpg">
+    <img src="../../images/portfolio/aubrey.jpg">
+    <img src="../../images/portfolio/pokemongo.jpg">
+    </div>
+
+    <div class="third"> 
+    <img src="../../images/portfolio/two_lilies.jpg">
+   	<img src="../../images/portfolio/coffee_angels.jpg">
+    <img src="../../images/portfolio/pogo_bliss.jpg">
+    <img src="../../images/portfolio/eyeonthepry.jpg">
+    </div>
+
+    <div class="third"> 
+    <img src="../../images/portfolio/twisty_tree.jpg">
+    <img src="../../images/portfolio/mermaid.jpg">
+    <img src="../../images/portfolio/swirlies.jpg">
+    </div>
+  </div>
+  </div>
+</div>
+<!-- Clear floats (to keep the pagination out of the grid)-->
+<div class="clear"></div><br><br>
+
+
+<!-- Photos as slideshow overlay -->
+<div id="slideshow" class="overlay animate-left" style="margin-left:180px">
+  <div class="topband"></div>
+  <div class="bottomband"></div>
+  <div class="overlay-content">
+    <a href="javascript:void(0)" class="closebtn animate-left">&times;</a>
+    <a class="leftscroller"><i class="fa fa-angle-left fa-2x"></i></a>
+    <a class="rightscroller"><i class="fa fa-angle-right fa-2x"></i></a>
+    
+    <figure><img src="../../images/portfolio/green_sky.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>House with green sky:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class - Jul, 2016</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/davis_longline.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Ben longlining:</b></i> Acrylic on scrap wood. Davis, CA - Jun, 2012</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/aubrey.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span id="6"><i><b>Aubrey at the expo:</b></i> Watercolor on paper. Shanghai, China - 2011. Div 3 portrait series 1 of 5.</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/pokemongo.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Po-kemon-go:</b></i> Watercolor and pencil on paper - Nov, 2016</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/two_lilies.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Two lilies:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class - Jul, 2016</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/coffee_angels.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Portrait of Seattle:</b></i> Acrylic on scrap wood - 2012.</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/pogo_bliss.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Pogo blissed-out:</b></i> Watercolor on paper - Nov, 2016</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/eyeonthepry.jpg"><figcaption><i  class="fa fa-angle-double-down fa-lg"></i><span><i><b>Eyes on the prize:</b></i> Watercolor on paper - Apr, 2011</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/twisty_tree.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Twisty tree:</b></i> Watercolor on paper. Painted at the John C. Campbell Folk School with Billie Shelburn's plein air watercolor class - Jul, 2016</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/mermaid.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Yes Ma I did the dishes:</b></i> Acrylic on scrap wood - 2012.</span></figcaption></figure>
+
+    <figure><img src="../../images/portfolio/swirlies.jpg"><figcaption><i class="fa fa-angle-double-down fa-lg"></i><span><i><b>Tornado dreams:</b></i> Watercolor on paper - 2013.</span></figcaption></figure>
+
+    <div id="leftside"></div>
+    <div id="rightside"></div>
+  </div>
+</div>
+
+
+  <!-- Pagination -->
+  <!-- commenting out pagination for now as I don't have that many ../../images
+  <div class="container center padding-32">
+    <ul class="pagination">
+      <li><a class="black" href="#">1</a></li>
+      <li><a class="hover-black" href="#">2</a></li>
+      <li><a class="hover-black" href="#">3</a></li>
+      <li><a class="hover-black" href="#">4</a></li>
+    </ul>
+  </div>
+  -->
+  <!-- Footer -->
+  <footer class="container padding-16 white">
+  <div class="row-padding">
+  <h5 class="center" style="font-size:14px">Hannah Hamavid 2016</h5>
+  </div>
+  </footer>
+
+<!-- End page content -->
+</div>
+</body>
+</html>
+

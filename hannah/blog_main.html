@@ -3,25 +3,27 @@
 <title>Hannah | Blog</title>
 <meta name="keywords" content="Hamavid, Hamavid.com, Hannah Hamavid, blog"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- STYLES -->
 <link rel="stylesheet" type="text/css" href="css/general_style.css"/>
-<link rel="stylesheet" type="text/css" href="css/slideshow.css"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css"/>
-<script type="text/javascript" src="./js/overlay_and_slideshow_fxns.js"></script>
-<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 .sidenav a,.sidenav h4 {font-weight:bold}
-
 </style>
+<!-- SCRIPTS -->
+<script type="text/javascript" src="../js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./js/general_fxns.js"></script>
 </head>
+
+<!--////////////////////////////////////////////////////////////////// -->
+
 <body class="light-grey content" style="max-width:1600px">
 
 <!-- Sidenav/menu -->
-<!-- Sidenav/menu -->
-<nav class="sidenav collapse white animate-left" style="z-index:3;width:300px;" id="mySidenav"><br>
+<nav class="sidenav collapse white animate-left" style="z-index:3;width:300px;" id="sidenav"><br>
   <div class="container">
-    <a href="#" onclick="w3_close()" class="hide-large right jumbo padding" title="close menu">
+    <a href="#" onclick="close_sidenav()" class="hide-large right jumbo padding" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
     <img src="images/leaves.jpg" style="width:45%;" class="round"><br><br>
@@ -42,7 +44,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </nav>
 
 <!-- Overlay effect when opening sidenav on small screens -->
-<div class="overlay hide-large animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
+<div class="overlay hide-large animate-opacity" onclick="close_sidenav()" style="cursor:pointer" title="close side menu" id="overlaySidenav"></div>
 
 <!-- !PAGE CONTENT! -->
 <div class="main" style="margin-left:300px">
@@ -50,7 +52,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <!-- Header -->
   <header class="container">
     <a href="#"><img src="images/leaves.jpg" style="width:65px;" class="circle right margin hide-large hover-opacity"></a>
-    <span class="opennav hide-large xxlarge hover-text-grey" onclick="w3_open()"><i class="fa fa-bars" style="margin-top:9px"></i></span>
+    <span class="opennav hide-large xxlarge hover-text-grey" onclick="open_sidenav()"><i class="fa fa-bars" style="margin-top:9px"></i></span>
      <!--<div><h1 style="font-size:140px;margin-left:300px"><b>Art</b></h1></div>
       <div><img src="./images/art.png" width="100%" style="margin-top:9px"></div>-->
     <div class="center bottombar padding-16">
