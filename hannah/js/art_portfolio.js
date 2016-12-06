@@ -1,5 +1,26 @@
 $(document).ready(function(){
 
+// Set left-margin of grid so entire grid is centered, based on screen width
+  var numimgs;
+  function grid_margin() {
+    var windowwidth=window.innerWidth || 
+    document.documentElement.clientWidth || 
+    document.body.clientWidth;
+  // how many 200px imgs w/ 3px padding & 6px grid padding & mysterious other stuff are in a row?
+    var availwidth = windowwidth;
+    if (availwidth >= 993) { availwidth = windowwidth-180}
+    if (availwidth >= 872) {numimgs = 4}
+    else if (availwidth < 872 && availwidth >= 660) {numimgs = 3}
+    else if (availwidth >=448 && availwidth < 660 ) {numimgs = 2}
+    else {numimgs = 1}
+  // how much screen is taken up by said images and padding?
+    var gridwidth = (numimgs * 218) + 12;
+  // divide remainder by 2 and set margin to center all images
+    $('#grid').css('margin-left',(availwidth-gridwidth)/2);
+  }
+  $(window).resize(grid_margin); 
+  grid_margin();
+
 // Show/hide back-to-top button
   window.onscroll = function() {showhide_backtotop()};
   $(window).bind('resize', showhide_backtotop);
@@ -12,8 +33,8 @@ $(document).ready(function(){
   }
 
 // Open and close slideshow at the correct image when various elements are clicked
-  $('#grid img').click(function() {
-    var index = $( "#grid img" ).index( this );
+  $('#grid div').click(function() {
+    var index = $( "#grid div" ).index( this );
     showDivs(index+1);
     document.getElementById("slideshow").style.display = "block";
   });
@@ -35,7 +56,7 @@ $(document).ready(function(){
   set_slide_height();
 
 // extract window dimensions and infer left and right areas for clicking back and forward
-  function reset_areas() {
+  function set_areas() {
     var windowwidth=window.innerWidth || 
     document.documentElement.clientWidth || 
     document.body.clientWidth;
@@ -48,10 +69,8 @@ $(document).ready(function(){
     $('#leftside').css('height',0.8*height);
     $('#rightside').css('height',0.8*height);
   }
-
-// reset when window is resized (so you don't have to refresh)
-  $(window).resize(reset_areas); 
-  reset_areas();
+  $(window).resize(set_areas); 
+  set_areas();
 
 // highlight left and right scroll arrows when hovering on diff areas of screen
   $('#leftside').mouseenter(function(){$('.leftscroller').css('opacity','1');});
@@ -65,7 +84,7 @@ $(document).ready(function(){
 
 // Make the figcaption dis/appear on click and toggle the up/down arrow accordingly
   $('figcaption').click(function() {
-/* hides all captions unless lines 69 & 72 are commented out, then hides only clicked-on caption */
+/* hides all captions unless the .each() wrapper is commented out, then hides only clicked-on caption */
     $( "figure" ).each(function() {
       $(this).find('i:first').toggleClass("fa-angle-double-down fa-angle-double-up");
       $(this).find('span:first').slideToggle();
@@ -78,7 +97,7 @@ $(document).ready(function(){
   var slideIndex;
   var x;
   function plusDivs(n) {
-      showDivs(slideIndex +=n);
+    showDivs(slideIndex +=n);
   }
 
 // Show the slide we're on, hide all others

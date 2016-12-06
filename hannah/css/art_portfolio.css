@@ -1,7 +1,16 @@
 /* ------------ GRID ------------  */
+#grid {
+    max-width:993px;
+    position:relative;
+    margin-left:auto;
+    margin-right:auto;
+}
+
 /* images */
-div.third>img {width:100%;}
-/*div.third>img:hover{opacity:0.60;filter:alpha(opacity=60);-webkit-backface-visibility:hidden}*/
+#grid span{padding:3px;line-height:208px;}
+#grid div {position:relative;vertical-align:middle;display:inline-block;width:200px;height:200px;}
+.vt {background-size: 200px!important;} /* for vertically oriented images, width is limiting factor */
+.hz {background-size: auto 200px!important;} /* vice versa for horizontal images */
 
 /* back-to-top button */
 .backtotop {
