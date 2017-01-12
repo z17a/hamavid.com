@@ -134,7 +134,7 @@ $(document).ready(function(){
       setTimeout(function(){
           console.log('waiting for image to load');
           showDivs(slideIndex);
-      }, 100);
+      }, 200);
     }
     margin_side = (overlaywidth - imgwidth)/2;
     windowheight = $(window).height();

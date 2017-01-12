@@ -36,3 +36,11 @@ body, html {
         background-attachment: scroll;
     }
 }
+
+/* Added post template */
+a,a:hover,a:visited,a:active{color:#666;}
+.section {
+padding: 1em 4% 2.5em;max-width:800px;margin-left:auto;margin-right:auto;
+}
+.section h3 {text-align:center;}
+#contact {display:table;}
