@@ -34,7 +34,6 @@ textarea{overflow:auto}
 /* End extract from normalize.css */
 
 
-/* CSS used for art_portfolio.html */
 .light-grey {color:#000!important;background-color:#f1f1f1!important}
 .content {max-width:980px;margin:auto}
 .sidenav {height:100%;width:200px;background-color:#fff;
@@ -197,6 +196,7 @@ textarea{overflow:auto}
 .dark-grey,.hover-dark-grey:hover{color:#fff!important;background-color:#616161!important}
 .black,.hover-black:hover{color:#fff!important;background-color:#000!important}
 .card-2{box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important}
+.card-2-alt{box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 4px 4px 0 rgba(0,0,0,0.12)!important} /*hh added */
 .animate-top{position:relative;-webkit-animation:animatetop 0.4s;animation:animatetop 0.4s}
 @-webkit-keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
 @keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
