@@ -22,6 +22,8 @@ $(document).ready(function(){
 		$('#hannah_area').css('width',(truewidth*0.55)-2);
 		$('#hannah_area').css('height',fivepct*16);
 		$('#showabout').css('margin-left',leftedge+truewidth-48);
+		//$('#instructions').css('margin-left',leftedge);
+		$('#instructions').css('margin-top',fivepct*13);
 		$('#about').css('max-width',0.85*truewidth);
 		wait=0;// milliseconds to delay after clicking area (more on mobile)
 		if (windowwidth < 600) {wait=500;}
@@ -64,12 +66,14 @@ $(document).ready(function(){
         $('#about').css('opacity','0.7');
         $('#about').css('z-index','2');
         $('#showabout').css('display','none');
+        $('#instructions').css('opacity','0');
 	});
 // Hide about section when hideabout div is clicked
 	$("#hideabout").on('click', function(){
         $('#about').css('opacity','0');
         $('#about').css('z-index','0');
         $('#showabout').css('display','block');
+        $('#instructions').css('opacity','0.7');
 	});	
 	
 });

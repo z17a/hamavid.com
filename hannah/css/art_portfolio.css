@@ -1,14 +1,20 @@
 a:link,a:visited,a:hover,a:active{color:black;}
 /* ------------ GRID ------------  */
+#gridpocket {
+    width:100%;
+    position:relative;
+    padding:8px;
+}
 #grid {
     max-width:993px;
     position:relative;
     margin-left:auto;
     margin-right:auto;
+    text-align:center;
 }
 
 /* images */
-#grid span{padding:3px;line-height:208px;}
+#grid span{padding:3px;line-height:208px;cursor:pointer;}
 #grid div {position:relative;vertical-align:middle;display:inline-block;width:200px;height:200px;}
 .vt {background-size: 200px!important;} /* for vertically oriented images, width is limiting factor */
 .hz {background-size: auto 200px!important;} /* vice versa for horizontal images */
@@ -44,54 +50,56 @@ a:link,a:visited,a:hover,a:active{color:black;}
     rgba(0,0,0,0.5);
 }
 .overlay-content {
-    position: absolute;
+    position: relative;
     height:80%;
-    width: 100%;
+    width:100%;
     top:10%;
     bottom:10%;
     background-color:rgba(0,0,0,0.8);
+    padding-right:15px; /* for scrollbar */
 }
-
+@media only screen and (max-width:450px) {.overlay-content{padding-right:5px;}}
 /* areas and links on overlay */
-#leftside {position:absolute;}
-#rightside {position:absolute;}
+#leftside,#rightside {
+    position:absolute;
+    top:0;
+    height:100%;
+    padding:0;
+}
+#leftside{width:20%;margin-right:80%;}#rightside{width:80%;margin-left:20%;}
 .topband,.bottomband{
     position:absolute;
     width:100%;
     height:10%;
 }
 .topband {top:0;} .bottomband{bottom:0;}
-.leftscroller {
+.leftscroller,.rightscroller {
     position:fixed;
     cursor:pointer;
     top: 45%;
-    left: 2%;
     font-size:2em;
     opacity:0.3;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
-.rightscroller {
-    position:fixed;
-    cursor:pointer;
-    top: 45%;
-    right: 2%;
-    font-size:2em;
-    opacity:0.3;
-}
-@media only screen and (max-width:450px), and (max-height:450px) {
+.leftscroller{left:2%;}.rightscroller {right:2%;}
+/*@media only screen and (max-width:450px), and (max-height:450px) {
     .leftscroller,.rightscroller{font-size:1em;}
-}
+}*/
 .rightscroller:hover,.leftscroller:hover{opacity:1!important;}
-@media only screen and (min-width: 993px) {.leftscroller{margin-left:180px;}}
-
-
+@media only screen and (min-width: 993px) {
+    .leftscroller{margin-left:180px;}
+}
 .closebtn {
     color:#B0B0B0;
     text-decoration:none!important;
     position: fixed;
-    top: 11%;
-    right: 1%;
-    font-size: 2em;
+    top: 8%;
+    right: 1.5%;
+    font-size: 2.5em;
     z-index:3;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 .closebtn:hover {color:#ffffff;}
 @media screen and (max-width: 450px), screen and (max-height: 450px) {
@@ -115,28 +123,36 @@ a:link,a:visited,a:hover,a:active{color:black;}
 
 /* figure and caption appearance */
 figure {
-    position:relative; /* needs to be relative for figtext toggle to work? */
-    float:left;
+    position:relative;
+    width:100%;
+    height:100%;
+    margin:0;
+    text-align:center;
+    vertical-align:center;
 }
 figure>img {
+    padding:16px;
     max-width:100%;
+    max-height:100%;
     position:relative;
-    top:0!important;
+    text-align:center;
+    top:50%;
+    -webkit-transform: translate(0%, -50%);
 }
 figcaption {
-    display:block;
+    margin:auto;
+    text-align:left;
     color:white;
     position: absolute;
-    float:left;
     bottom:0;
     background-color:
-    rgba(0,0,0,0.5);
-    padding:4px;
+    rgba(0,0,0,0.6);
+    padding:8px;
     padding-bottom:8px;
     opacity:1;
     z-index:4;
 }
-figcaption>span {margin-left:1.1em;float:right;} 
+figcaption>span {margin-left:1.1em;}
 figcaption {cursor:pointer;}
 @media only screen and (max-width: 450px) {figcaption{max-height:100%;}}
 @media only screen and (max-height: 450px) {figcaption{max-width:100%;}}

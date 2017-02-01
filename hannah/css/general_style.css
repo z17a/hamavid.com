@@ -33,7 +33,16 @@ textarea{overflow:auto}
 ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
 /* End extract from normalize.css */
 
-
+/* DOES NOT WORK 1/24/16 prevent blue boxes from showing on mobile when links are clicked */
+body{
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .light-grey {color:#000!important;background-color:#f1f1f1!important}
 .content {max-width:980px;margin:auto}
 .sidenav {height:100%;width:200px;background-color:#fff;
