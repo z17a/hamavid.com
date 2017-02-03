@@ -14,84 +14,67 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
-figure {
-	padding:0;
-	height:100%;
-	position:absolute;
-	margin:0;
-	display:block;
+
+.pocket {
+	position:relative;
+	overflow:hidden;
+}
+
+
+img {
+	/*
+	max-width: 100%;
+	max-height: 100%;*/
+	min-height:100%;
+	position:fixed;
    	left:50%;
    	-webkit-transform: translate(-50%);
-}
-img {
-	position:relative;
-	height:100%;
-}
-
-/* the location of sisters*/
-#aviva_area,#hannah_area,#showabout  {
-	cursor:pointer;
-	position:absolute;
-	z-index:1;
-}
-#aviva_area{
-	width:45%;
-	height:85%;
-	top:15%;
-}
-#hannah_area{
-	width:54%;
-	height:80%;
-	top:10%;
-	right:0;
-}
-
-
-/* show/hide various images based on mouseover 
-and show/hide instructions and labels depending on screen size */
-#default {opacity:1;}
-#hl_aviva,#hl_hannah,#instructions,#about,.label{
-	opacity:0;
-	position:absolute;
+	/*display: block;
+	margin: auto;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 	left:0;
+	top:0;
+	z-index:0;
+	overflow:hidden;*/
+}
+
+/* the location of sisters based on the window size - 
+filled in by js fxns */
+#aviva_area,#hannah_area,#showabout  {
+	position: absolute;
+	cursor:pointer;
+}
+
+/*#aviva_area,#hannah_area{border-radius:100px;border:1px solid red;}*/
+
+/* show/hide various images based on mouseover */
+#default {
+	opacity:1;
+}
+#hl_aviva,#hl_hannah,#instructions,#about{
+	opacity:0;
 	-webkit-transition:opacity 1s;
 	transition:opacity 1s;
 }
-#aviva_area:hover + #hl_aviva{opacity:0.7;}
-#hannah_area:hover + #hl_hannah{opacity:0.7;}
-.label{
-	position:relative;
-	top:40%;
-	left:30%;
-	border-radius:5px;
-}
 #instructions {
-	z-index:1;
-	display:block;
-	position:absolute;
-	margin:auto;
-	top:0;
 	width:100%;
-	padding:2px 5px 2px 5px;
 	text-align:center;
-}
-#instructions,.label{
-	padding:2px 5px 2px 5px;
+	margin:auto;
+	position:absolute;
+	z-index:2;
+	display:block;
 	font-size:20px;
 	background-color:black;
 	color:#fff;
+	opacity:0.7;
 	font-family:sans-serif;
 	font-weight:lighter;
 	font-variant: small-caps;
-	opacity:0;
+	padding:2px 5px 2px 5px;
+	/*top:0;*/
 }
-@media only screen and (max-width:450px), screen and (max-height:500px) {
-	#instructions,.label{opacity:0.7;}
-}
-@media only screen and (max-height:400px) {#instructions,.label{font-size:14px;}}
-#aviva_area:hover span.label{opacity:0.7!important;}
-#hannah_area:hover span.label{opacity:0.7!important;}
-
 /* button to show about section */
 #showabout{
 	display:block;
@@ -104,7 +87,6 @@ and show/hide instructions and labels depending on screen size */
 	text-align:center;
 	font-family:sans-serif;
 	bottom:0;
-	right:4px;
 	-webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
@@ -113,7 +95,7 @@ and show/hide instructions and labels depending on screen size */
 /*about section */
 #about {
 	opacity:0;
-	max-width:85%;
+	max-width:0;
 	margin: auto;
 	position: absolute;
 	bottom: 0;
@@ -131,7 +113,7 @@ and show/hide instructions and labels depending on screen size */
 	padding:1em;
 }
 #about p {padding:0.2em;}
-#about a:link,#about a:hover,#about a:visited,#about a:active{color:#fff;cursor:pointer;z-index:15;}
+#about a:link,#about a:hover,#about a:visited,#about a:active{color:#fff;}
 /*button to hide about section*/
 #hideabout {
 	color:#d3d3d3;

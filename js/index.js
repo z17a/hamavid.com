@@ -1,65 +1,27 @@
 $(document).ready(function(){
 
-// extract img dimensions and infer hannah/aviva locations
-	function reset_dims() {
+// set figure properties and opacity of instructions and labels, based on screen height/width 
+	function reset_dims_opac() {
 		var windowwidth=window.innerWidth || 
     	document.documentElement.clientWidth || 
     	document.body.clientWidth;
-		height = $(window).height();
-		console.log(height);
-		//imgwidth = (307/442) * height;
-		imgwidth = (274/442) * height;
-		if (windowwidth < imgwidth) {truewidth = windowwidth;} 
-		else {truewidth = imgwidth;}
-		leftedge = (windowwidth/2) - (truewidth/2);
-		fivepct = height/20;
-		$('#aviva_area').css('margin-left',leftedge);
-		$('#aviva_area').css('margin-top',fivepct*3);
-		$('#aviva_area').css('width',truewidth*0.45);
-		$('#aviva_area').css('height',fivepct*17);
-		$('#hannah_area').css('margin-left',leftedge+(truewidth*0.45)+1);
-		$('#hannah_area').css('margin-top',fivepct*2);
-		$('#hannah_area').css('width',(truewidth*0.55)-2);
-		$('#hannah_area').css('height',fivepct*16);
-		$('#showabout').css('margin-left',leftedge+truewidth-48);
-		//$('#instructions').css('margin-left',leftedge);
-		$('#instructions').css('margin-top',fivepct*13);
-		$('#about').css('max-width',0.85*truewidth);
-		wait=0;// milliseconds to delay after clicking area (more on mobile)
-		if (windowwidth < 600) {wait=500;}
+		imgwidth = (274/442) * $(window).height();
+		$('figure').css('width',imgwidth);
+		//$('figure').css('margin-left',(windowwidth/2)-(imgwidth/2));
+		if (windowwidth<=450 || $(window).height()<=450) {
+        	$('#instructions').css('opacity','0.7');
+        	$('.label').css('opacity','0.7');
+    	} else {
+    		$('#instructions').css('opacity','0');
+        	$('.label').css('opacity','0');
+    	}
 	}
-	$(window).on('resize load', reset_dims);
-	reset_dims();
-
-
-// specify picture to show on mouseover of different divs
-	$('#aviva_area').mouseenter(function(){
-		$('#hl_aviva').css('opacity','1');
-	});
-	$('#aviva_area').mouseleave(function(){
-		$('#hl_aviva').css('opacity','0');
-		$('#hl_hannah').css('opacity','0');
-	});
-	$('#hannah_area').mouseenter(function(){
-		$('#hl_hannah').css('opacity','1');	
-	});
-	$('#hannah_area').mouseleave(function(){
-		$('#hl_aviva').css('opacity','0');
-		$('#hl_hannah').css('opacity','0');
-	});
-
+	$(window).on('resize load', reset_dims_opac);
+	reset_dims_opac();
 
 // Go to relevant subpages when divs are clicked (can add delay in milliseconds)
-	$("#aviva_area").on('click', function(){
-		setTimeout(function() {
-        	window.location = "./aviva";
-        }, wait);
-	});
-	$("#hannah_area").on('click', function(){
-	     setTimeout(function() {
-        	window.location = "./hannah";
-        }, wait);   
-	});
+	$("#aviva_area").on('click', function(){window.location = "./aviva";});
+	$("#hannah_area").on('click', function(){window.location = "./hannah";});
 
 // Show about section when showabout div is clicked
 	$("#showabout").on('click', function(){
@@ -67,14 +29,15 @@ $(document).ready(function(){
         $('#about').css('z-index','2');
         $('#showabout').css('display','none');
         $('#instructions').css('opacity','0');
+        $('.label').css('opacity','0');
 	});
-// Hide about section when hideabout div is clicked
+// Hide about section when hideabout div is clicked and reset opacity of relevant elements
 	$("#hideabout").on('click', function(){
         $('#about').css('opacity','0');
         $('#about').css('z-index','0');
         $('#showabout').css('display','block');
-        $('#instructions').css('opacity','0.7');
-	});	
+        reset_dims_opac();
+	});
 	
 });
 
