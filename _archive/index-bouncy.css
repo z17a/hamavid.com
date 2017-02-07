@@ -13,6 +13,9 @@ body{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-family:sans-serif;
+	font-variant: small-caps;
+	color:#fff;
 }
 figure {
 	padding:0;
@@ -59,6 +62,54 @@ and show/hide instructions and labels depending on screen size */
 }
 #aviva_area:hover + #hl_aviva{opacity:0.7;}
 #hannah_area:hover + #hl_hannah{opacity:0.7;}
+.alabel,.hlabel{
+	position:absolute;
+	background:transparent;
+	font-size:30px;
+	font-weight:900;
+	letter-spacing:-1.5px;
+	-webkit-text-stroke-width: 0.8px;
+    -webkit-text-stroke-color: black;
+    opacity:0.9;
+    text-align:center;
+    z-index:1;
+}
+@media only screen and (max-height:500px), (max-width:450px) {
+	.alabel,.hlabel{
+		font-size:20px;
+		font-weight:700;
+		letter-spacing:-0.5px;
+	}
+}
+.alabel{
+	left:0;
+	width:45%;
+	top:14%;
+}
+.hlabel{
+	right:0;
+	width:55%;
+	top:10%;
+}
+@media only screen and (min-height:500px) and (min-width:450px) {
+	#aviva_area:hover + .alabel{-webkit-animation:abounce 0.3s 2}
+	#hannah_area:hover + .hlabel{-webkit-animation:hbounce 0.3s 2}
+}
+@-webkit-keyframes abounce {
+  0%       { top:13%; }
+  25%, 75% { top:12%; }
+  50%      { top:11%; }
+  100%     {top:14%;}
+}
+@-webkit-keyframes hbounce {
+  0%       { top:9%; }
+  25%, 75% { top:8%; }
+  50%      { top:7%; }
+  100%     {top:10%;}
+}
+
+
+
 
 .label{
 	top:35%;
@@ -86,9 +137,6 @@ and show/hide instructions and labels depending on screen size */
 	text-align:center;
 	position:absolute;
 	width:100%;
-	color:#fff;
-	font-family:sans-serif;
-	font-variant: small-caps;
 }
 
 @media only screen and (max-width:450px), screen and (max-height:550px) {.label{opacity:1;}}
@@ -137,6 +185,7 @@ and show/hide instructions and labels depending on screen size */
 	font-family:sans-serif;
 	overflow-y:auto;
 	padding:1em;
+	font-variant:none;
 }
 #about p {padding:0.2em;}
 #about a:link,#about a:hover,#about a:visited,#about a:active{color:#fff;cursor:pointer;z-index:15;}

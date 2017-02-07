@@ -18,6 +18,8 @@ a:link,a:visited,a:hover,a:active{color:black;}
 #grid div {position:relative;vertical-align:middle;display:inline-block;width:200px;height:200px;}
 .vt {background-size: 200px!important;} /* for vertically oriented images, width is limiting factor */
 .hz {background-size: auto 200px!important;} /* vice versa for horizontal images */
+#grid div {-webkit-transition:opacity 0.3s;transition:opacity 0.3s;} /*for hover opacity*/
+#grid div:hover{opacity:0.6;}
 
 /* back-to-top button */
 .backtotop {

@@ -9,9 +9,11 @@ $(document).ready(function(){
 		$('figure').css('width',imgwidth);
 		//$('figure').css('margin-left',(windowwidth/2)-(imgwidth/2));
 		if (windowwidth<=450 || $(window).height()<=450) {
+        	$('#instructions').css('opacity','0.7');
         	$('.label').css('opacity','0.7');
     	} else {
-    		$('.label').css('opacity','0');
+    		$('#instructions').css('opacity','0');
+        	$('.label').css('opacity','0');
     	}
 	}
 	$(window).on('resize load', reset_dims_opac);
@@ -26,14 +28,14 @@ $(document).ready(function(){
         $('#about').css('opacity','0.7');
         $('#about').css('z-index','2');
         $('#showabout').css('display','none');
-        $('#instructions, .label').css('opacity','0');
+        $('#instructions').css('opacity','0');
+        $('.label').css('opacity','0');
 	});
 // Hide about section when hideabout div is clicked and reset opacity of relevant elements
 	$("#hideabout").on('click', function(){
         $('#about').css('opacity','0');
         $('#about').css('z-index','0');
         $('#showabout').css('display','block');
-        $('#instructions').css('opacity','0.7');
         reset_dims_opac();
 	});
 	

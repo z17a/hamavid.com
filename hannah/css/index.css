@@ -140,7 +140,7 @@ a,a:hover,a:visited,a:active{color:#666;}
     .name img {height:40px;margin-top:5px;}
     .navlinks {font-size:15px;}
     .navlinks a {line-height:10px;margin-top:5px;border-radius:5px;}
-    #banner{margin-top:50px;}
+    .banner{margin-top:50px;}
     .lefthalf {width:100%;}
     .righthalf {width:100%;}
 }
