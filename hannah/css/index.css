@@ -43,6 +43,7 @@ body, html {
 a,a:hover,a:visited,a:active{color:#666;}
 
 /* control look and behavior of top navbar and its contents for diff window sizes */
+#topnav{z-index:2;}
 .topnavbar {height:80px;}
 .topnavbar-contents {max-width:800px;margin-left:auto;margin-right:auto;}
 .navlinks {
@@ -62,7 +63,7 @@ a,a:hover,a:visited,a:active{color:#666;}
     border-radius: 10px;
 }
 .navbar-bars {float:right!important;}
-.navbar-bars:hover {color:#B0B0B0;-webkit-transition: color 0.5s;transition: color 0.5s;}
+/*.navbar-bars:hover {color:#B0B0B0;-webkit-transition: color 0.5s;transition: color 0.5s;}*/
 .navbar-bars i {margin-right:0.5em;margin-top:8px;}
 .smallnavlinks ul {list-style:none;margin:0px;padding:0px;}
 .smallnavlinks li {border-top:1px solid white;}
@@ -133,8 +134,10 @@ a,a:hover,a:visited,a:active{color:#666;}
 
 
 /* adjustments for small and medium size screens */
-@media (max-width:500px){.navlinks {display:none;}.navbar-bars{display:block!important;}}
-
+@media (max-width:500px){
+    .navlinks {display:none;}
+    .navbar-bars{display:block!important;}
+}
 @media (max-width:750px){
     .topnavbar{height:50px;}
     .name img {height:40px;margin-top:5px;}

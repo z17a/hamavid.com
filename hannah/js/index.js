@@ -46,9 +46,12 @@ $(window).on('resize scroll load', function() {
 });
 
 // Make the navigation menu dis/appear on bars click for small screens
-  $('.navbar-bars').click(function() {
+  $('.navbar-bars, #overlaybkgrnd').click(function() {
       $('.smallnavlinks').slideToggle();
-  });
+      $('#overlaybkgrnd').toggle();
+  }); 
+  
+
 // Make menu disappear if screen is enlarged past where bars show
 // and position and size banner img
   $(window).on('resize load', function() {
@@ -77,6 +80,7 @@ $(window).on('resize scroll load', function() {
     }
     if (windowwidth >=500) {
     	$('.smallnavlinks').css('display','none');
+        $('#overlaybkgrnd').css('display','none');
     }	
   });	
 
