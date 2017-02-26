@@ -10,8 +10,12 @@ $(document).ready(function(){
 		//$('figure').css('margin-left',(windowwidth/2)-(imgwidth/2));
 		if (windowwidth<=450 || $(window).height()<=450) {
         	$('.label').css('opacity','0.7');
+        	$('.smallabout').css('display','block');
+        	$('.largeabout').css('display','none');
     	} else {
     		$('.label').css('opacity','0');
+    		$('.smallabout').css('display','none');
+        	$('.largeabout').css('display','block');
     	}
 	}
 	$(window).on('resize load', reset_dims_opac);
@@ -21,21 +25,21 @@ $(document).ready(function(){
 	$("#aviva_area").on('click', function(){window.location = "./aviva";});
 	$("#hannah_area").on('click', function(){window.location = "./hannah";});
 
-// Show about section when showabout div is clicked
+// Change characteristics of various elements when showabout div is clicked
 	$("#showabout").on('click', function(){
-        $('#about').css('opacity','0.7');
-        $('#about').css('z-index','2');
+        $('.about').css('opacity','0.7');
+        $('.about').css('z-index','2');
         $('#showabout').css('display','none');
         $('#instructions, .label').css('opacity','0');
 	});
-// Hide about section when hideabout div is clicked and reset opacity of relevant elements
-	$("#hideabout").on('click', function(){
-        $('#about').css('opacity','0');
-        $('#about').css('z-index','0');
+// Change back characteristics of various elements when hideabout x is clicked
+	$(".hideabout").on('click', function(){
+        $('.about').css('opacity','0');
+        $('.about').css('z-index','0');
         $('#showabout').css('display','block');
         $('#instructions').css('opacity','0.7');
         reset_dims_opac();
 	});
-	
+
 });
 

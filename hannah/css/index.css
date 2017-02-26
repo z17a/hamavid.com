@@ -80,7 +80,7 @@ a,a:hover,a:visited,a:active{color:#666;}
     z-index:1;
 }
 .smallnavlinks {display:none;}
-.navlinks a:hover,.smallnavlinks li:hover{
+.navlinks a:hover,.smallnavlinks li:hover,.minisections h4 a:hover{
     background-color:#B0B0B0;
     color:white!important;
     -webkit-transition: background-color 0.5s;
@@ -131,7 +131,14 @@ a,a:hover,a:visited,a:active{color:#666;}
 #contact {display:table;}
 .lefthalf {width:50%;float:left;}
 .righthalf {width:50%;float:right;}
-
+#summary,#pictureofme,.minisections>div{display:inline-block;}
+#summary{width:60%;right:0;} #pictureofme{width:39%;left:0;}
+.minisections>div{width:300px;padding:3%;vertical-align:top;}
+.minisections{margin:auto;text-align:center;padding:1em;padding-bottom:3em;}
+.minisections h4 a {padding:5px;border-radius:5px;}
+.minisections a {font-weight:bold;cursor:pointer;text-decoration:none;}
+.more {font-style:italic;text-decoration:none;padding:5px;}
+.more a{font-weight:lighter;color:#778899;}
 
 /* adjustments for small and medium size screens */
 @media (max-width:500px){
@@ -146,5 +153,7 @@ a,a:hover,a:visited,a:active{color:#666;}
     .banner{margin-top:50px;}
     .lefthalf {width:100%;}
     .righthalf {width:100%;}
+    #summary{width:100%;}
+    #pictureofme{width:100%;}
 }
 
