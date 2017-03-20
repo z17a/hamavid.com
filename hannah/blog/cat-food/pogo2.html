@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+
+  <title>Pogo</title>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src='../../../js/crossfilter.js' type='text/javascript'></script>
+  <script src='../../../js/dc.js' type='text/javascript'></script>
+  <script src='../../../js/jquery-3.1.1.min.js' type='text/javascript'></script>
+  <script src='../../../js/bootstrap.min.js' type='text/javascript'></script>
+
+  <link href='../../../css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link href='../../../css/dc.css' rel='stylesheet' type='text/css'>
+
+  <style>
+    html,body{height:100%;overflow:hidden;}
+    #charts{width:60%;margin:auto;}
+    #keyslider{width:39%;float:right;float:top;margin-bottom:0px;}
+    #charts,#keyslider{display:inline-block;height:100%;}
+    #dryfood,#wetfood{cursor:pointer;padding-left:5px;}
+    h4 {text-align:center;padding:5px;}
+    table{
+      width:100%;
+      float:right;
+      margin-right:0;
+      text-align:left;
+      vertical-align:top;
+      margin-top:10px;
+    }
+    tr{width:100%;line-height:24px;font-weight:bold;}
+    .hovered,.selected{font-weight:normal;}
+    #photoslider{padding:0px;}
+    img {
+      opacity:0;
+      position:absolute;
+      /*bottom:10px;*/
+
+      -webkit-transition:opacity 0.5s;
+      transition:opacity 0.5s;
+      -moz-transition:opacity 0.5s;
+    }
+    @media screen and (max-width:800px), (max-height:450px) {
+      #key{width:100%;}
+      #charts{width:100%;}
+    }
+    @media screen and (max-width:500px) {
+      #hoverspace{display:none;}
+
+    }
+  </style>
+</head>
+
+<body>
+<div style='font: 16px sans-serif;height:100%'>
+
+<!--Line charts for dry and wet food-->
+<div id="charts">
+  <div id='dryfood'>
+    <h4>Dry food (Tablespoons)</h4>
+  </div>
+  <div id='wetfood'>
+    <h4>Wet food (Ounces)</h4>
+  </div>    
+</div>
+
+<!-- For large pages, hovered/selected key and photo on right -->
+<div id="keyslider">
+  <!-- hovered/selected key -->
+  <div id="key">
+    <table id="keytable">
+      <tr id='hoverspace'><td>Hovered:<span class="hovered"></span></td></tr>
+      <tr><td>Selected:<span class="selected"></span></td></tr>
+      <tr><td>Test row<span></span></td></tr>
+    </table>
+  </div>
+  <!-- photos and slider -->
+  <div id=photoslider>
+    <img id="11/24/16" src="./images/20161125_005142.jpg">
+    <img id="11/25/16" src="./images/20161125_102825.jpg">
+    <img id="11/26/16" src="./images/20161126_125133.jpg">
+    <img id="11/27/16" src="./images/20161127_223423.jpg">
+    <img id="11/28/16" src="./images/20161128_205949.jpg">
+    <img id="11/30/16" src="./images/20161130_102618.jpg">
+    <img id="12/01/16" src="./images/20161201_185518.jpg">
+    <img id="12/03/16" src="./images/20161203_162227.jpg">
+  </div>
+</div>
+
+</div>
+<script>
+
+// extract window width and set img size accordingly
+ /* function set_img_size() {
+    var windowwidth=window.innerWidth || 
+    document.documentElement.clientWidth || 
+    document.body.clientWidth;
+    var imgwidth = windowwidth * 0.37;
+    var windowheight=document.documentElement.clientHeight;
+    var imgheight = windowheight - 100;
+    $('img').css('max-width',imgwidth);
+    $('img').css('max-height',imgheight);
+  }
+  $(window).bind('resize',set_img_size); 
+  set_img_size();*/
+
+
+// Show the slide we're on, hide all others
+  function showDivs(date, error) {
+    x = document.getElementsByTagName("img");
+    var i;
+    for (i = 0; i < x.length; i++) {
+        //x[i].style.display = "none";
+        x[i].style.opacity = 0;
+    }
+    var date=date;
+    try{
+      today = document.getElementById(date);
+      //today.style.display = "block";
+      today.style.opacity = 1;
+    }
+    catch(error) {
+      console.log("No photo for " + date + ". Error: " + error);
+    }
+    get_margins();
+    $(window).bind('resize', get_margins);
+  }
+
+// Determine margins for this image so it is centered
+  function get_margins() {
+
+  // Get width and height of window and various elements
+    var windowwidth=window.innerWidth || 
+    document.documentElement.clientWidth || 
+    document.body.clientWidth;
+    var windowheight=document.documentElement.clientHeight;
+    var keyheight = document.getElementById('keytable').clientHeight + 5;
+    console.log(keyheight);
+    //var windowheight = $(window).height();
+
+  // set initial margins to zero so image is rendered at full size
+    var margin_side = 0;
+    var margin_top = 0;
+    reset_margins(margin_top,margin_side);
+
+  // Set image max size
+    $('img').css('max-width',windowwidth * 0.37);
+    $('img').css('max-height',windowheight - keyheight-10);  
+
+  // find out how big image is and how big leftover screen is
+    imgwidth = today.clientWidth;
+    if (imgwidth == 0) { // wait for image to load before setting margins
+      setTimeout(function(){
+          console.log('waiting for image to load');
+          showDivs(date);
+      }, 200);
+    }
+    margin_side = ((windowwidth * 0.37) - imgwidth)/2;
+    imgheight = today.clientHeight;
+    margin_top = keyheight+ (((windowheight-keyheight) - imgheight)/2);
+    console.log(imgheight + ", " + imgwidth);
+    
+  // set margins to center the image according to how much screen is leftover
+    reset_margins(margin_top,margin_side);
+  }
+
+// pulling this out for less repitition
+  function reset_margins(top,side) {
+    var margin_top = top;
+    var margin_side = side;
+    today.style.removeProperty('margin-left');
+    today.style.setProperty('margin-left', margin_side + 'px', 'important');
+    today.style.removeProperty('margin-top');
+    today.style.setProperty('margin-top', margin_top + 'px', 'important');
+  }
+
+
+
+
+
+// Create the dc.js chart objects & link to div
+var dryfood = dc.lineChart("#dryfood");
+var wetfood = dc.lineChart("#wetfood");
+var key = d3.select("#key");
+
+
+// load data from a csv file
+d3.csv("d3pogodata.csv", function(data) {
+  function getdims() {  
+      var w = window.innerWidth;
+      var h = window.innerHeight;
+      var wratio = 1;
+      var hratio = 0.5;
+      if (w>800) {var wratio=0.6}
+      var width=(w * wratio)-40, height=(h * hratio)-60;
+      return{width:width,height:height};
+  };
+
+  // Determine dimensions of charts and margins
+  getdims();
+  
+  //var width=480, height=300, top=10, right=10, bottom=20, left=40;
+  var top=10, right=10, bottom=20, left=30;
+  //var width=getdims().width, height=getdims().height;
+
+
+  // format our data
+  var dtgFormat = d3.time.format("%m/%d/%y");
+  //var formatTime = d3.time.format("%b %d");
+
+  data.forEach(function(d) { 
+    d.date   = dtgFormat.parse(d.date); 
+    d.dry   = +d.dry;
+    d.wet  = +d.wet;
+  });
+
+  // Run the data through crossfilter and load our 'facts'
+  var facts = crossfilter(data);
+
+  // Line charts by day
+  var byday = facts.dimension(function(d) {
+    return d.date;
+  });
+  var drygroup = byday.group()
+    .reduceSum(function(d) { return d.dry; });
+  var wetgroup = byday.group()
+    .reduceSum(function(d) { return d.wet; });
+
+  // dry graph
+  dryfood.width(getdims().width)
+    .height(getdims().height)
+    .margins({top: top, right: right, bottom: bottom, left: left})
+    .dimension(byday)
+    .group(drygroup)
+    .transitionDuration(500)
+    .elasticY(true)
+    .brushOn(false)
+    .title(function(){return;})
+    .on('renderlet', function(chart) {
+      chart.svg().select('.chart-body').attr('clip-path',null);
+      chart.svg().selectAll('circle.dot')
+      .attr('r',3.5).style('fill-opacity',0.4).style('stroke-opacity',0.4).attr('fill','black')
+      .on('mousemove',function(d){
+          d3.select(this).style('fill-opacity', 1).style('stroke-opacity', 1).attr('r',5);
+          key.select('.hovered').text(" " + dtgFormat(d.data.key) + ' - ' + d.data.value + 'T');
+        })
+      .on('click', function(d) {
+          var thisdate=d.data.key;
+          chart.selectAll('circle.dot').attr('r',3.5).style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('clicked','no');
+          d3.select(this).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1).attr('clicked','yes');
+          wetfood.selectAll('circle.dot').style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('r',3.5);
+          wetfood.selectAll('circle.dot').filter(function(d) { return d.data.key == thisdate; }).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1);
+          key.select('.selected').text(" " + dtgFormat(d.data.key) + ' - ' + d.data.value + 'T');
+          showDivs(dtgFormat(thisdate));
+      })
+      .on('mouseout', function(){
+          var dot=d3.select(this);
+          if (dot.attr('clicked') != 'yes') {
+            dot.style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('r',3.5);
+          }
+          key.select('.hovered').text("");
+      })    
+      /*.on('click', function(d) {
+          wetfood.select('.display-qux').text("Selected: " + dtgFormat(d.data.key) + ' - ' + d.data.value);
+      });
+      .on('click', function(d) {
+          console.log(dtgFormat(d.data.key));
+      });*/
+    })
+    .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.date; })))
+    //.yAxisLabel('Dry food per day (Tablespoons)')
+    .xAxis().ticks(4);
+    
+  // wet graph
+  wetfood.width(getdims().width)
+    .height(getdims().height)
+    .margins({top: top, right: right, bottom: bottom, left: left})
+    .dimension(byday)
+    .group(wetgroup)
+    .transitionDuration(500)
+    .elasticY(true)
+    .brushOn(false)
+    .title(function(){return;})
+    .on('renderlet', function(chart) {
+      chart.svg().select('.chart-body').attr('clip-path',null);
+      chart.svg().selectAll('circle.dot')
+      .attr('r',3.5).style('fill-opacity',0.4).style('stroke-opacity',0.4).attr('fill','black')
+      .on('mousemove',function(d){
+          d3.select(this).style('fill-opacity', 1).style('stroke-opacity', 1).attr('r',5);
+          key.select('.hovered').text(" " + dtgFormat(d.data.key) + ' - ' + d.data.value + 'Oz')})
+      .on('click', function(d) {
+          var thisdate=d.data.key;
+          chart.selectAll('circle.dot').attr('r',3.5).style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('clicked','no');
+          d3.select(this).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1).attr('clicked','yes');
+          dryfood.selectAll('circle.dot').style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('r',3.5);
+          dryfood.selectAll('circle.dot').filter(function(d) { return d.data.key == thisdate; }).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1);
+          key.select('.selected').text(" " + dtgFormat(d.data.key) + ' - ' + d.data.value + 'Oz');
+          showDivs(dtgFormat(thisdate));
+      })
+      .on('mouseout', function(d){
+          var dot=d3.select(this);
+          if (dot.attr('clicked') != 'yes') {
+            dot.style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('r',3.5);
+          }
+          key.select('.hovered').text("");
+      })    
+    })
+    //.yAxisPadding(0.2) // makes bottom go to -0.2 as well
+    .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.date; })))
+    .xAxis().ticks(4); 
+
+  // Render the Charts
+  dc.renderAll();
+  
+});
+  
+</script>
+    
+</body>
+</html>

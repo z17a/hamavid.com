@@ -17,13 +17,19 @@ $(document).ready(function(){
     		$('.smallabout').css('display','none');
         	$('.largeabout').css('display','block');
     	}
+        wait=0;// milliseconds to delay after clicking area (more on mobile)
+        if (windowwidth < 600) {wait=500;}
 	}
 	$(window).on('resize load', reset_dims_opac);
 	reset_dims_opac();
 
 // Go to relevant subpages when divs are clicked (can add delay in milliseconds)
-	$("#aviva_area").on('click', function(){window.location = "./aviva";});
-	$("#hannah_area").on('click', function(){window.location = "./hannah";});
+	$("#aviva_area").on('click', function(){
+        setTimeout(function() {window.location = "./aviva";}, wait);
+    });
+	$("#hannah_area").on('click', function(){
+        setTimeout(function() {window.location = "./hannah";}, wait);
+    });
 
 // Change characteristics of various elements when showabout div is clicked
 	$("#showabout").on('click', function(){

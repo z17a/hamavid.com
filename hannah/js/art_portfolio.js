@@ -71,7 +71,6 @@ $(document).ready(function(){
 // Show the slide we're on, hide all others
   function showDivs(n) {
     var i;
-    var width;
     slideIndex = n;
     x = document.getElementsByTagName("figure");
     if (n > x.length) {slideIndex = n % x.length}

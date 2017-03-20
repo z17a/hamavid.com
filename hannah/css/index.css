@@ -140,10 +140,12 @@ a,a:hover,a:visited,a:active{color:#666;}
 .more {font-style:italic;text-decoration:none;padding:5px;}
 .more a{font-weight:lighter;color:#778899;}
 
+
 /* adjustments for small and medium size screens */
 @media (max-width:500px){
     .navlinks {display:none;}
     .navbar-bars{display:block!important;}
+    .minisections{padding:0;padding-bottom:3em;}
 }
 @media (max-width:750px){
     .topnavbar{height:50px;}

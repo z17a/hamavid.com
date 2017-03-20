@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+
+  <title>How much does the cat eat? Viz!</title>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src='../../../js/crossfilter.js' type='text/javascript'></script>
+  <script src='../../../js/dc.js' type='text/javascript'></script>
+  <script src='../../../js/jquery-3.1.1.min.js' type='text/javascript'></script>
+  <script src='../../../js/bootstrap.min.js' type='text/javascript'></script>
+
+  <link href='../../../css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link href='../../../css/dc.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="../../../css/font-awesome.min.css"/>
+
+  <style>
+    html,body{height:100%;overflow:hidden;box-sizing:content-box;}
+    .maindiv{font: 16px sans-serif;max-width:780px;min-width:465px;text-align:center;margin:auto;}
+    #charts{width:450px;}
+    #keyslider{width:300px;}
+    #charts,#keyslider{
+      position:relative;display:inline-block;padding:5px 5px 5px 5px;height:608px;
+    }
+    #dryfood,#wetfood{cursor:pointer;}
+    h4 {text-align:center;padding:5px;}
+    #dryreport,#wetreport {
+      line-height:0;opacity:0;
+    }
+    table{
+      width:100%;
+      float:right;
+      margin-right:0;
+      text-align:left;
+    }
+    tr{width:100%;line-height:24px;font-weight:bold;}
+    td{position:relative;width:100%;}
+    .hovered,.selected{font-weight:normal;}
+    #scrollability{cursor:pointer;z-index:4;}
+    #datescrollbar{
+      position:absolute;
+      border:2px solid #333;
+      opacity:0.9;
+      height:8px;top:3px;
+      width:261px;
+      left:18px;
+    }
+    #leftscroller,#rightscroller,#datescrollbar{line-height:17px;z-index:5;}
+    #leftscroller{float:left;} #rightscroller{float:right;}
+    #handle{
+      opacity:0.7;
+      position:absolute;
+      height:15px;
+      width:4px;
+      top:1px;
+      border-radius:2px;
+      background-color:#333;
+      border:1px solid #333;
+      margin-left:0px;
+      /*margin-left:-1.296875px;*/
+    }
+    img {
+      position:absolute;
+      max-width:300px;
+      max-height:510px; /* 608-78-20, charts height - keyheight - padding for key and img*/
+      padding: 5px 0px 5px 0px;
+      opacity:0;
+      -webkit-transition:opacity 0.6s;
+      transition:opacity 0.6s;
+      -moz-transition:opacity 0.6s;
+    }
+    @media screen and (max-width:780px), (max-height:608px) {body{overflow-y:auto;}}
+    @media screen and (max-width:780px) {
+      img{max-width:450px;}
+      #keyslider{height:88px;}
+      /*#keyslider{width:450px;height:88px;}
+      #datescrollbar{width:411px;left:17px;}*/
+    }
+    @media screen and (max-width:460px) {body{overflow-x:auto;}}
+    @media screen and (max-width:480px), (max-height:480px) {#hoverspace{display:none;}}
+
+  </style>
+</head>
+
+<body>
+<div class="maindiv">
+
+<!--Line charts for dry and wet food-->
+<div id="charts">
+  <div id='dryfood'></span>
+    <h4>Dry food (Tablespoons)</h4>
+  </div>
+  <div id='wetfood'></span>
+    <h4>Wet food (Ounces)</h4>
+  </div>    
+</div>
+
+<!-- For large pages, hovered/selected key and photo on right -->
+<div id="keyslider">
+  <!-- hovered/selected key -->
+  <div id="key">
+    <table id="keytable">
+      <tr id='hoverspace'><td>Hovered:<span class="hovered"></span></td></tr>
+      <tr><td>Selected:<span class="selected"></span></td></tr>
+      <tr><td id="scrollability">
+      <!-- &#x25C1, &#x25B7 -->
+        <span id="leftscroller"><i class="fa fa-caret-square-o-left fa-lg" aria-hidden="true"></i></span>
+        <span id="rightscroller"><i class="fa fa-caret-square-o-right fa-lg" aria-hidden="true"></i></span>
+        <span id="handle"></span>
+        <span id="datescrollbar"></span>
+      </td></tr>
+    </table>
+  </div>
+  <!-- photos and slider -->
+  <div id=photoslider>
+    <img id="11/24/16" src="./images/20161125_005142.jpg">
+    <img id="11/25/16" src="./images/20161125_102825.jpg">
+    <img id="11/26/16" src="./images/20161126_125133.jpg">
+    <img id="11/27/16" src="./images/20161127_223423.jpg">
+    <img id="11/28/16" src="./images/20161128_205949.jpg">
+    <img id="11/30/16" src="./images/20161130_102618.jpg">
+    <img id="12/01/16" src="./images/20161201_185518.jpg">
+    <img id="12/03/16" src="./images/20161203_162227.jpg">
+    <img id="12/06/16" src="./images/20161206_134648.jpg">
+    <img id="12/07/16" src="./images/20161208_000455.jpg">
+    <img id="12/08/16" src="./images/20161208_094916.jpg">
+    <img id="12/09/16" src="./images/IMG_20161209_140947.jpg">
+    <img id="12/12/16" src="./images/20161212_220220.jpg">
+    <img id="12/13/16" src="./images/20161213_185123.jpg">
+    <img id="12/15/16" src="./images/20161215_231817.jpg">
+    <img id="12/16/16" src="./images/20161216_213901.jpg">
+    <img id="12/17/16" src="./images/20161217_234024.jpg">
+    <img id="12/18/16" src="./images/20161218_165604.jpg">
+    <img id="12/19/16" src="./images/20161219_105707.jpg">
+    <img id="12/20/16" src="./images/20161220_164725.jpg">
+    <img id="12/21/16" src="./images/20161221_103451.jpg">
+    <img id="12/22/16" src="./images/20161223_000521.jpg">
+    <img id="12/23/16" src="./images/20161223_104850.jpg">
+    <img id="12/24/16" src="./images/IMG_20161224_223724_618.jpg">
+    <img id="12/25/16" src="./images/20161225_233955.jpg">
+    <img id="12/26/16" src="./images/20161226_173213.jpg">
+    <img id="12/27/16" src="./images/20161227_191010.jpg">
+    <img id="12/28/16" src="./images/20161228_150925.jpg">
+    <img id="12/29/16" src="./images/20161229_154507.jpg">
+    <img id="12/30/16" src="./images/20161230_190904.jpg">
+    <img id="01/01/17" src="./images/20170101_195836.jpg">
+    <img id="01/02/17" src="./images/IMG_20170102_125431.jpg">
+    <img id="01/03/17" src="./images/IMG_20170103_191554.jpg">
+    <img id="01/04/17" src="./images/IMG_20170104_114408.jpg">
+    <img id="01/05/17" src="./images/IMG_20170105_233030.jpg">
+    <img id="01/06/17" src="./images/20170106_124528.jpg">
+    <img id="01/07/17" src="./images/IMG_20170107_133136.jpg">
+    <img id="01/09/17" src="./images/20170109_234626.jpg">
+    <img id="01/10/17" src="./images/IMG_20170110_184109.jpg">
+    
+    
+  </div>
+</div>
+
+</div>
+<script>
+// Show the slide we're on, hide all others, and get margins for this one so it's centered
+  function showDivs(date, error) {
+    x = document.getElementsByTagName("img");
+    var i;
+    for (i = 0; i < x.length; i++) {
+        //x[i].style.display = "none";
+        x[i].style.opacity = 0;
+    }
+    var date=date;
+    try{
+      today = document.getElementById(date);
+      //today.style.display = "block";
+      today.style.opacity = 1;
+      get_margins();
+      $(window).bind('resize', get_margins());
+    }
+    catch(error) {
+      console.log("No photo for " + date + ". Error: " + error);
+    }
+  }
+
+  function get_margins() {
+
+  // Get dims of various elements
+    var keyheight = document.getElementById('keytable').clientHeight;
+    var photosliderwidth = document.getElementById('photoslider').clientWidth;
+    var windowwidth=window.innerWidth || 
+    document.documentElement.clientWidth || 
+    document.body.clientWidth;
+
+  // find out how big image is and how big leftover screen is
+    imgwidth = today.clientWidth;
+    if (imgwidth == 0) { // wait for image to load before setting margins
+      setTimeout(function(){
+          console.log('waiting for image to load');
+          showDivs(date);
+      }, 200);
+    }
+    margin_side = (photosliderwidth - imgwidth)/2;
+    imgheight = today.clientHeight;
+    if (windowwidth < 780) {margin_top=keyheight + 5;}
+    else {margin_top = keyheight + ((510 - imgheight)/2);}
+    
+  // set margins to center the image according to how much screen is leftover
+    reset_margins(margin_top,margin_side);
+  }
+
+// pulling this out for less repitition
+  function reset_margins(top,side) {
+    var margin_top = top;
+    var margin_side = side;
+    today.style.removeProperty('margin-left');
+    today.style.setProperty('margin-left', margin_side + 'px', 'important');
+    today.style.removeProperty('margin-top');
+    today.style.setProperty('margin-top', margin_top + 'px', 'important');
+  }
+
+// format our date
+var dtgFormat = d3.time.format("%m/%d/%y");
+//var formatTime = d3.time.format("%b %d");
+
+
+// Create the dc.js chart objects & link to div
+var dryfood = dc.lineChart("#dryfood");
+var wetfood = dc.lineChart("#wetfood");
+var key = d3.select("#key");
+
+// load data from a csv file
+d3.csv("d3pogodata.csv", function(data) {
+
+  // get both wet and dry values for a given date and announce it in the "selected" area
+  function getvals(selected) { // takes a value of date formatted like "11/30/16"
+    var date = selected;
+    var select_area = document.getElementById("keytable").getElementsByClassName("selected")[0];
+    data.forEach(function(x) {
+      x.date = x.date;
+      if (dtgFormat(x.date) == date) {
+        var thisdry = x.dry;
+        var thiswet = x.wet;
+        //console.log("dry: "+ thisdry + ", wet: " + thiswet);
+        select_area.innerHTML = " " + date + " - " + thisdry + "T, " + thiswet + "Oz"
+      }
+    });
+  };
+
+    // determine number of pixels on scrollbar that correspond to a day based on num dates in data (only changes when data is updated)  
+    /*
+      var counts = 0;
+      var scrollbarwidth = 255;
+      data.forEach(function(w) { 
+        counts +=1
+        w.date   = dtgFormat.parse(w.date);
+        return counts;
+      })
+      var dailypixels = scrollbarwidth/counts;*/
+      var dailypixels = 2.65625;
+
+   // set where handle should be positioned based on date selection in charts
+      function treatAsUTC(date) {
+          var result = new Date(date);
+          result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
+          return result;
+      }
+      function daysBetween(startDate, endDate) {
+          var millisecondsPerDay = 24 * 60 * 60 * 1000;
+          return (treatAsUTC(endDate) - treatAsUTC(startDate)) / millisecondsPerDay;
+      }
+      function sethandle(date) {
+        $('#handle').css('margin-left',daysBetween("11/24/16",date) * dailypixels);
+      }
+
+// Determine dimensions of charts and margins (made it a function at one point when trying to make page responsive but changed mind for now)
+  function getdims() {  
+    return{width:435,height:250};
+  };
+  getdims();
+  //var width=480, height=300, top=10, right=10, bottom=20, left=40;
+  var top=10, right=10, bottom=20, left=30;
+  //var width=getdims().width, height=getdims().height;
+
+  data.forEach(function(d) { 
+    d.date   = dtgFormat.parse(d.date); 
+    d.dry   = +d.dry;
+    d.wet  = +d.wet;
+  });
+
+// Run the data through crossfilter and load our 'facts'
+  var facts = crossfilter(data);
+
+// Line charts by day
+  var byday = facts.dimension(function(d) {
+    return d.date;
+  });
+  var drygroup = byday.group()
+    .reduceSum(function(d) { return d.dry; });
+  var wetgroup = byday.group()
+    .reduceSum(function(d) { return d.wet; });
+
+// dry graph
+  dryfood.width(getdims().width)
+    .height(getdims().height)
+    .margins({top: top, right: right, bottom: bottom, left: left})
+    .dimension(byday)
+    .group(drygroup)
+    .transitionDuration(500)
+    .elasticY(true)
+    .brushOn(false)
+    .title(function(){return;})
+    .on('renderlet', function(chart) {
+      chart.svg().select('.chart-body').attr('clip-path',null);
+      chart.svg().selectAll('circle.dot')
+      .attr('r',3.5).style('fill-opacity',0.4).style('stroke-opacity',0.4).attr('fill','black')
+      .on('mousemove',function(d){
+          d3.select(this).style('fill-opacity', 1).style('stroke-opacity', 1).attr('r',5);
+          key.select('.hovered').text(" " + dtgFormat(d.data.key) + ' - ' + d.data.value + 'T');
+        })
+      .on('click', function(d) {
+          var thisdate=d.data.key;
+          
+          chart.selectAll('circle.dot').attr('r',3.5).style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('clicked','no');
+          d3.select(this).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1).attr('clicked','yes');
+          wetfood.selectAll('circle.dot').style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('r',3.5);
+          wetfood.selectAll('circle.dot').filter(function(d) { return d.data.key == thisdate; }).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1);
+          //key.select('.selected').text(" " + dtgFormat(d.data.key) + ' - ' + d.data.value + 'T');
+          //highlightdots(thisdate);
+          sethandle(dtgFormat(thisdate));
+          getvals(dtgFormat(thisdate));
+          showDivs(dtgFormat(thisdate));
+      })
+      .on('mouseout', function(){
+          var dot=d3.select(this);
+          if (dot.attr('clicked') != 'yes') {
+            dot.style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('r',3.5);
+          }
+          key.select('.hovered').text("");
+      })    
+      /*.on('click', function(d) {
+          wetfood.select('.display-qux').text("Selected: " + dtgFormat(d.data.key) + ' - ' + d.data.value);
+      });
+      .on('click', function(d) {
+          console.log(dtgFormat(d.data.key));
+      });*/
+    })
+    .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.date; })))
+    //.yAxisLabel('Dry food per day (Tablespoons)')
+    .xAxis().ticks(4);
+    
+// wet graph
+  wetfood.width(getdims().width)
+    .height(getdims().height)
+    .margins({top: top, right: right, bottom: bottom, left: left})
+    .dimension(byday)
+    .group(wetgroup)
+    .transitionDuration(500)
+    .elasticY(true)
+    .brushOn(false)
+    .title(function(){return;})
+    .on('renderlet', function(chart) {
+      chart.svg().select('.chart-body').attr('clip-path',null);
+      chart.svg().selectAll('circle.dot')
+      .attr('r',3.5).style('fill-opacity',0.4).style('stroke-opacity',0.4).attr('fill','black')
+      .on('mousemove',function(d){
+          d3.select(this).style('fill-opacity', 1).style('stroke-opacity', 1).attr('r',5);
+          key.select('.hovered').text(" " + dtgFormat(d.data.key) + ' - ' + d.data.value + 'Oz')})
+      .on('click', function(d) {
+          var thisdate=d.data.key;
+          
+          chart.selectAll('circle.dot').attr('r',3.5).style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('clicked','no');
+          d3.select(this).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1).attr('clicked','yes');
+          dryfood.selectAll('circle.dot').style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('r',3.5);
+          dryfood.selectAll('circle.dot').filter(function(d) { return d.data.key == thisdate; }).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1);
+          //key.select('.selected').text(" " + dtgFormat(d.data.key) + ' - ' + d.data.value + 'Oz'); 
+          //highlightdots(thisdate);
+          sethandle(dtgFormat(thisdate));
+          getvals(dtgFormat(thisdate));
+          showDivs(dtgFormat(thisdate));
+      })
+      .on('mouseout', function(d){
+          var dot=d3.select(this);
+          if (dot.attr('clicked') != 'yes') {
+            dot.style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('r',3.5);
+          }
+          key.select('.hovered').text("");
+      })    
+    })
+    //.yAxisPadding(0.2) // makes bottom go to -0.2 as well
+    .x(d3.time.scale().domain(d3.extent(data, function(d) { return d.date; })))
+    .xAxis().ticks(4); 
+
+
+
+// highlight appropriate dots when handle moves
+  function highlightdots(date) {
+    var thisdate=date;
+    wetfood.selectAll('circle.dot').attr('r',3.5).style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('clicked','no');
+    dryfood.selectAll('circle.dot').attr('r',3.5).style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('clicked','no');
+    wetfood.selectAll('circle.dot').filter(function(f) { return f.data.key.getTime() === thisdate.getTime(); }).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1).attr('clicked','yes');
+    dryfood.selectAll('circle.dot').filter(function(g) { return g.data.key.getTime() === thisdate.getTime(); }).attr('r',5).style('fill-opacity', 1).style('stroke-opacity', 1).attr('clicked','yes'); 
+    }
+
+
+// date-pixel connector
+  d3.csv("d3pogodata.csv", function(data) {
+
+  // determine number of pixels on scrollbar that correspond to a day based on num dates in data (only changes when data are updated)  
+    var counts = 0;
+    var startdate;
+    var enddate;
+    data.forEach(function(d) { 
+      counts +=1
+      d.date   = dtgFormat.parse(d.date);
+      if (counts == 1){startdate=d.date;}
+      enddate=d.date;
+      return {counts:counts, startdate:startdate, enddate:enddate};
+    })
+    var dailypixels = ($('#datescrollbar').width()-3)/counts;
+
+  // Set start conditions
+    getleft(0);
+    getdate(0);
+
+  // get both wet and dry values for a given date and announce it in the "selected" area
+    function getvals(selected) { // takes a value of date formatted like "11/30/16"
+      var date = selected;
+      data.forEach(function(x) {
+        x.date = x.date;
+        if (dtgFormat(x.date) == date) {
+          var thisdry = x.dry;
+          var thiswet = x.wet;
+          $('.selected').text(" " + date + " - " + thisdry + "T, " + thiswet + "Oz");
+        }
+      });
+    };
+    //getvals("12/15/16");
+    
+  // function to move handle to a daily-unit along scrollbar approximating mouse position when scrollbar is clicked  
+    function getleft(n) {
+      var left = Math.round(n / dailypixels) * dailypixels;
+      return left;
+    }
+    
+  // determine num days since start date that correspond with handle position, announce that date in 'selected' and show corresponding picture  
+      function getdate(x) {
+        var startdate=dtgFormat.parse("11/24/16");
+        //var numdays = Math.round(x/dailypixels);
+        var numdays = x/dailypixels;
+        Date.prototype.addDays = function(days) {
+          var dat = new Date(this.valueOf());
+          dat.setDate(dat.getDate() + days);
+          return dat;
+        }
+        var selected = dtgFormat(startdate.addDays(numdays));
+        showDivs(selected);
+        getvals(selected);
+        console.log(selected);
+        highlightdots(dtgFormat.parse(selected)); 
+      }
+
+  // determine num days since start date that correspond with mouse position, return that date (for hovering)
+      function getdatelite(x) {
+        var startdate=dtgFormat.parse("11/24/16");
+        var numdays = Math.round(x/dailypixels);
+        Date.prototype.addDays = function(days) {
+          var dat = new Date(this.valueOf());
+          dat.setDate(dat.getDate() + days);
+          return dat;
+        }
+        return dtgFormat(startdate.addDays(numdays));
+      }
+
+
+  // move handle and trigger date-getting function based on click position on date scrollbar/arrows
+    //var parentoffset = $("#datescrollbar").offset().left;
+    var maxleft = 256;
+    function whereami() {
+      var location = event.pageX - $("#datescrollbar").offset().left-3;
+      if (location<0) {var location=0};
+      if (location>maxleft) {var location=maxleft};
+      return location;
+    } // -3 so it goes to middle of handle
+    function gethandle() {
+      var handle = $('#handle').offset().left - $("#datescrollbar").offset().left;
+      return handle;
+    }
+  //if the scroll bar is clicked, move handle to closest daily-pixels unit by mouse position
+    $("#datescrollbar").click(function() {
+        $('#handle').css('margin-left',getleft(whereami()));
+    });
+  //if the left scroller is clicked and there is room to go down, move handle from its current position down one day
+    $("#leftscroller").click(function() {
+      //console.log(parentoffset);
+      console.log(gethandle());
+      if (gethandle() >=dailypixels) {
+        $('#handle').css('margin-left',getleft(gethandle() - dailypixels));
+      }
+    });    
+  //if the right scroller is clicked and there is room to go up, move handle from its current position up one day
+    $("#rightscroller").click(function() {
+      //if (gethandle() <= $('#datescrollbar').width() - dailypixels) {
+      if (gethandle() <= maxleft) {
+        $('#handle').css('margin-left',getleft(gethandle() + dailypixels));
+      } 
+    });
+  // report date and show divs etc based on where handle now is    
+    $('#scrollability').click(function(){getdate(gethandle())});
+
+  // handle click-and-drag functionality
+    var clicking = false;
+    $('#datescrollbar').mousedown(function(){clicking = true;});
+    $(document).mouseup(function(){clicking = false;})
+    $('#datescrollbar').mousemove(function(){
+      // hoverover - show date in hover field
+      if (clicking==false) {
+        //console.log(whereami());
+        //console.log(gethandle());
+        $('.hovered').text(" "+getdatelite(getleft(whereami())));
+        $('#datescrollbar').mouseout(function() {
+          $('.hovered').text("");
+        });
+      // clicked - move handle with mouse, show date in hover field, date and data in selected filed, appropriate photo for date
+      } else {
+        $('#handle').css('margin-left',getleft(whereami()));
+        $('.hovered').text(" "+getdatelite(getleft(whereami())));
+        getdate(getleft(whereami()));
+      }
+    });
+
+  // make sure handle never goes outside of scrollbar?
+      
+
+  });
+
+// Render the Charts
+  dc.renderAll();
+  
+});
+  
+</script>
+    
+</body>
+</html>
