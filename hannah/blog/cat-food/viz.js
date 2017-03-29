@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////
 'use strict';
 ///////// PHOTO SLIDER //////////
-// Show the slide we're on, hide all others, and do function to get margins for this one so it's centered
+// f(date): show the slide we're on, hide all others, and do function to get margins for this one so it's centered
   function showDivs(date, error) {
     var x = document.getElementsByTagName("img");
     var i;
@@ -24,10 +24,10 @@
     }
   }
 
-// Set margins for photos
+// f(date): get margins for photos
   function get_margins(when) {
     var today=when;
-  // Get dims of various elements
+  // get dims of various elements
     var keyheight = document.getElementById('keytable').clientHeight;
     var photosliderwidth = document.getElementById('photoslider').clientWidth;
     var windowwidth=window.innerWidth || 
@@ -81,10 +81,11 @@
     var dailypixels = ($('#datescrollbar').width()-3)/counts; // -3 so it will refer to middle of handle
    
   // Set start conditions
-    getleft(0);
-    getdate(0);
+    //getleft(0);
+    //getdate(0);
+    datecascade(getdate(0));
 
-  // get both wet and dry values for a given date and announce it in the "selected" area
+  // f(date): get both wet and dry values for a given date and announce it in the "selected" area
     function getvals(selected) { // takes a value of date formatted like "11/30/16"
       var date = selected;
       data.forEach(function(x) {
@@ -97,10 +98,10 @@
       });
     };
  
-  // function to move handle to a daily-unit along scrollbar approximating mouse position when scrollbar is clicked  
+  // f(mouse position): move handle to a daily-unit along scrollbar approximating mouse position when scrollbar is clicked  
     function getleft(n) {return Math.round(n / dailypixels) * dailypixels;}
     
-  // determine num days since start date that correspond with handle position, announce that date in 'selected' and show corresponding picture  
+  // f(mouse position): determine num days since start date that correspond with mouse position, return that date
     function getdate(x) {
       var startdate=dtgFormat.parse("11/24/16");
       var numdays = x/dailypixels;
@@ -109,25 +110,17 @@
         dat.setDate(dat.getDate() + days);
         return dat;
       }
-      var selected = dtgFormat(startdate.addDays(numdays));
+      return dtgFormat(startdate.addDays(numdays));
+    }
+
+  // f(date): show divs, getvals and highlight dots when a given date is selected on date scrollbar
+    function datecascade(selected) {
       showDivs(selected);
       getvals(selected);
       highlightdots(dtgFormat.parse(selected)); 
     }
 
-  // determine num days since start date that correspond with mouse position, return that date (for hovering)
-    function getdatelite(x) {
-      var startdate=dtgFormat.parse("11/24/16");
-      var numdays = Math.round(x/dailypixels);
-      Date.prototype.addDays = function(days) {
-        var dat = new Date(this.valueOf());
-        dat.setDate(dat.getDate() + days);
-        return dat;
-      }
-      return dtgFormat(startdate.addDays(numdays));
-    }
-
-  // move handle and trigger date-getting function based on click position on date scrollbar/arrows
+  // move handle based on click position on date scrollbar/arrows
     var maxright = $("#datescrollbar").width()-5;
     function whereami() {
       var location = event.pageX - $("#datescrollbar").offset().left-3; // -3 so it goes to middle of handle
@@ -154,7 +147,7 @@
       } 
     });
   // report date and show divs etc based on where handle now is    
-    $('#scrollability').click(function(){getdate(gethandle())});
+    $('#scrollability').click(function(){datecascade(getdate(gethandle()));});
 
   // handle click-and-drag functionality
     var clicking = false;
@@ -163,19 +156,19 @@
     $('#datescrollbar').mousemove(function(){
     // hoverover - show date in hover field
       if (clicking==false) {
-        $('.hovered').text(" "+getdatelite(getleft(whereami())));
+        $('.hovered').text(" "+getdate(getleft(whereami())));
         $('#datescrollbar').mouseout(function() {
           $('.hovered').text("");
         });
     // clicked - move handle with mouse, show date in hover field, date and data in selected filed, appropriate photo for date
       } else {
-        $('#handle').css('margin-left',getleft(whereami()));
-        $('.hovered').text(" "+getdatelite(getleft(whereami())));
-        getdate(getleft(whereami()));
+        $('#handle').css('margin-left',getleft(whereami())); 
+        $('.hovered').text(" "+getdate(getleft(whereami())));
+        datecascade(getdate(getleft(whereami())));
       }
     });
 
-   // set where handle should be positioned based on date selection in charts
+  // f(dates): set where handle should be positioned based on date selection in charts
     function treatAsUTC(date) {
         var result = new Date(date);
         result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
@@ -187,7 +180,7 @@
     }
     function sethandle(date) {$('#handle').css('margin-left',daysBetween("11/24/16",date) * dailypixels);}
 
-  // highlight appropriate dots when handle moves
+  // f(date): highlight appropriate dots when handle moves
     function highlightdots(date) {
       var thisdate=date;
       wetfood.selectAll('circle.dot').attr('r',3.5).style('fill-opacity', 0.4).style('stroke-opacity', 0.4).attr('clicked','no');
@@ -199,7 +192,7 @@
 
 ///////// MAKE CHARTS ///////////
   // Determine dimensions of charts and margins (made it a function at one point when trying to make page responsive but changed mind for now)
-    function getdims() {return{width:435,height:250};};
+    function getdims() {return{width:435,height:220};};
     var top=10, right=10, bottom=20, left=30;
 
   // Run the data through crossfilter and load our 'facts'

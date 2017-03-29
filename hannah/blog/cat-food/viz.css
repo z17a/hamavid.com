@@ -26,7 +26,7 @@ td{position:relative;width:100%;}
   border:2px solid #333;
   opacity:0.9;
   height:8px;top:3px;
-  width:261px;
+  width:256.5px;
   left:18px;
 }
 #leftscroller,#rightscroller,#datescrollbar{line-height:17px;z-index:5;}
@@ -46,11 +46,12 @@ img {
   position:absolute;
   max-width:300px;
   max-height:510px; /* 608-78-20, charts height - keyheight - padding for key and img*/
-  padding: 5px 0px 5px 0px;
+  padding: 5px 0px 5px 0px!important;
   opacity:0;
   -webkit-transition:opacity 0.6s;
   transition:opacity 0.6s;
   -moz-transition:opacity 0.6s;
+  margin-bottom:10px;
 }
 @media screen and (max-width:780px), (max-height:608px) {body{overflow-y:auto;}}
 @media screen and (max-width:780px) {
